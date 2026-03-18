@@ -1,0 +1,341 @@
+/* ==========================================
+   СТРАНИЦА СРАВНЕНИЯ — Улучшенный дизайн
+   ========================================== */
+
+.page-hero-premium {
+    padding: calc(100px + var(--space-20)) 0 var(--space-20);
+    text-align: center;
+}
+.page-hero-content-premium {
+    max-width: 980px;
+    margin: 0 auto;
+}
+.page-badge-premium {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-6);
+    background: linear-gradient(135deg, rgba(122, 149, 224, 0.14) 0%, rgba(168, 184, 255, 0.14) 55%, rgba(255, 209, 218, 0.16) 100%);
+    color: var(--primary-800);
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(122, 149, 224, 0.32);
+    font-size: .8rem;
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    margin-bottom: var(--space-6);
+    box-shadow: var(--accent-token-shadow);
+}
+.page-title-premium {
+    font-family: var(--font-display);
+    line-height: 1.16;
+    margin-bottom: var(--space-6);
+}
+.page-description-premium {
+    max-width: 760px;
+    margin: 0 auto;
+    color: var(--text-secondary);
+}
+
+/* ==========================================
+   ОСНОВНАЯ ТАБЛИЦА СРАВНЕНИЯ
+   ========================================== */
+
+.compare-section {
+    padding-top: var(--space-4);
+}
+
+/* Подсказка о горизонтальной прокрутке — только на мобильных */
+.compare-scroll-hint {
+    display: none;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 0.8rem;
+    color: var(--text-tertiary, var(--neutral-500));
+    margin-bottom: var(--space-3);
+}
+
+@media (max-width: 768px) {
+    .compare-scroll-hint {
+        display: flex;
+    }
+}
+.compare-table-wrap {
+    overflow-x: auto;
+    padding: var(--space-8);
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-2xl);
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 246, 255, 0.9) 100%);
+    border: 1px solid rgba(148, 167, 230, 0.34);
+    box-shadow:
+        0 18px 42px rgba(63, 70, 106, 0.1),
+        0 6px 20px rgba(148, 167, 230, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.compare-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 880px;
+}
+
+.compare-table thead th {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: var(--font-semibold);
+    padding: var(--space-5) var(--space-6);
+    text-align: left;
+    border-bottom: 2px solid rgba(148, 167, 230, 0.35);
+    background: linear-gradient(180deg, rgba(122, 149, 224, 0.14) 0%, rgba(168, 184, 255, 0.06) 100%);
+}
+.compare-table thead th:first-child {
+    border-radius: var(--radius-md) 0 0 0;
+}
+.compare-table thead th:nth-child(2) {
+    background: linear-gradient(180deg, rgba(122, 149, 224, 0.22) 0%, rgba(168, 184, 255, 0.14) 100%);
+    color: var(--primary-700);
+    position: relative;
+}
+.compare-table thead th:nth-child(2)::after {
+    content: '';
+    position: absolute;
+    right: var(--space-4);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gradient-accent-text);
+    opacity: 0.9;
+}
+
+.compare-table th,
+.compare-table td {
+    padding: var(--space-5) var(--space-6);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.compare-table tbody tr {
+    transition: background var(--transition-fast);
+}
+.compare-table tbody tr:hover {
+    background: rgba(148, 167, 230, 0.06);
+}
+.compare-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.compare-table tbody td {
+    border-bottom: 1px solid rgba(148, 167, 230, 0.2);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+.compare-table tbody td:first-child {
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 200px;
+}
+
+.compare-table td:nth-child(2) {
+    background: rgba(122, 149, 224, 0.04);
+    font-weight: 500;
+}
+
+.compare-table i.fa-check {
+    color: #2ea66f;
+    font-size: 1.1rem;
+    margin-right: var(--space-2);
+}
+.compare-table i.fa-times {
+    color: #d9545f;
+    font-size: 1.1rem;
+    margin-right: var(--space-2);
+}
+.compare-table i.fa-minus {
+    color: var(--text-tertiary);
+    font-size: 1rem;
+    margin-right: var(--space-2);
+}
+
+/* ==========================================
+   КАРТОЧКИ РЕКОМЕНДАЦИЙ
+   ========================================== */
+
+.compare-reco-section {
+    padding-top: var(--space-4);
+}
+.compare-reco-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+}
+
+.reco-card {
+    padding: var(--space-8);
+    text-align: center;
+    transition: transform var(--transition-base);
+}
+.reco-card:hover {
+    transform: translateY(-4px);
+}
+.reco-card h3 {
+    margin-bottom: var(--space-4);
+    font-size: 1.15rem;
+    color: var(--primary-700);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+}
+.reco-card h3::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gradient-accent-text);
+}
+.reco-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+.compare-final-cta {
+    margin-top: var(--space-10);
+    display: flex;
+    gap: var(--space-5);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ==========================================
+   РАЗДЕЛ ИССЕЯ VS CHATGPT
+   ========================================== */
+
+.compare-chatgpt-section {
+    padding-top: var(--space-8);
+}
+.compare-chatgpt-wrap {
+    overflow-x: auto;
+    padding: var(--space-8);
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-2xl);
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 246, 255, 0.9) 100%);
+    border: 1px solid rgba(148, 167, 230, 0.34);
+    box-shadow:
+        0 18px 42px rgba(63, 70, 106, 0.1),
+        0 6px 20px rgba(148, 167, 230, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.compare-table--chatgpt {
+    min-width: 640px;
+}
+.compare-table--chatgpt thead th:nth-child(2)::after {
+    background: var(--primary-500);
+}
+.compare-chatgpt-cta {
+    margin-top: var(--space-8);
+    text-align: center;
+}
+
+/* ==========================================
+   АДАПТИВ
+   ========================================== */
+
+@media (max-width: 960px) {
+    .compare-reco-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-5);
+    }
+}
+
+/* Принудительный overflow-x для таблиц — перекрывает overflow:hidden от карточек */
+.compare-table-wrap,
+.compare-chatgpt-wrap {
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+}
+
+/* Подсказка о прокрутке на мобильных */
+@media (max-width: 768px) {
+    .compare-table-wrap::after,
+    .compare-chatgpt-wrap::after {
+        content: '';
+        display: block;
+        position: sticky;
+        right: 0;
+        width: 32px;
+        height: 100%;
+        background: linear-gradient(to left, rgba(255,255,255,0.9), transparent);
+        pointer-events: none;
+        flex-shrink: 0;
+    }
+
+    .compare-table-wrap,
+    .compare-chatgpt-wrap {
+        padding: var(--space-4) var(--space-3);
+        margin-left: calc(-1 * var(--space-4));
+        margin-right: calc(-1 * var(--space-4));
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+
+    /* Компактнее на маленьких экранах */
+    .compare-table th,
+    .compare-table td {
+        padding: var(--space-3) var(--space-3);
+        font-size: 0.82rem;
+        line-height: 1.4;
+    }
+    .compare-table thead th {
+        font-size: 0.8rem;
+        padding: var(--space-3);
+        white-space: nowrap;
+    }
+    .compare-table tbody td:first-child {
+        min-width: 120px;
+        font-size: 0.8rem;
+    }
+
+    /* Основная таблица: уменьшаем min-width */
+    .compare-table {
+        min-width: 600px;
+    }
+    .compare-table--chatgpt {
+        min-width: 480px;
+    }
+
+    .compare-chatgpt-wrap {
+        padding: var(--space-4) var(--space-3);
+    }
+    .compare-final-cta {
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+    .compare-final-cta .btn-premium {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .compare-table th,
+    .compare-table td {
+        padding: var(--space-2) var(--space-2);
+        font-size: 0.78rem;
+    }
+    .compare-table tbody td:first-child {
+        min-width: 100px;
+    }
+    .compare-table {
+        min-width: 520px;
+    }
+    .compare-table--chatgpt {
+        min-width: 400px;
+    }
+}

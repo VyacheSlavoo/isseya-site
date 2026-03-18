@@ -1,0 +1,263 @@
+/* ==========================================
+   UNIFIED INNER PAGE TEMPLATE
+   Brings internal pages to the same visual rhythm as home
+   ========================================== */
+
+.inner-page .page-hero-premium {
+    padding-top: calc(140px + var(--space-10));
+    padding-bottom: var(--space-16);
+    text-align: center;
+}
+
+.inner-page .page-hero-premium .hero-grid,
+.inner-page .page-hero-premium .page-hero-content-premium {
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+.inner-page .page-hero-premium .hero-content,
+.inner-page .page-hero-premium .page-hero-content-premium {
+    text-align: center;
+    margin: 0 auto;
+    padding-left: 0;
+    position: relative;
+}
+
+.inner-page .page-hero-premium .hero-title,
+.inner-page .page-hero-premium .page-title-premium {
+    text-align: center;
+    margin: 0 auto var(--space-6);
+    font-size: clamp(1.75rem, 4.2vw, 3rem);
+    line-height: 1.18;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+    max-width: 820px;
+}
+
+/* features.html: двухколоночный герой — оставляем лево-выровненным */
+.inner-page .page-hero-premium.hero-premium {
+    text-align: left;
+}
+.inner-page .page-hero-premium.hero-premium .hero-grid,
+.inner-page .page-hero-premium.hero-premium .hero-content {
+    text-align: left;
+    margin: 0;
+    padding-left: 0;
+}
+.inner-page .page-hero-premium.hero-premium .page-title-premium,
+.inner-page .page-hero-premium.hero-premium .hero-title {
+    text-align: left;
+    margin: 0 0 var(--space-6);
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    max-width: none;
+}
+.inner-page .page-hero-premium.hero-premium .page-description-premium,
+.inner-page .page-hero-premium.hero-premium .hero-description {
+    text-align: left;
+    margin: 0;
+    max-width: 600px;
+}
+
+.inner-page .page-hero-premium .hero-description,
+.inner-page .page-hero-premium .page-description-premium {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 640px;
+    font-size: 1.1rem;
+    line-height: 1.75;
+}
+
+.inner-page .page-hero-premium .hero-stats {
+    justify-content: center;
+    margin: var(--space-8) auto 0;
+}
+
+.inner-page .page-hero-premium .hero-badge,
+.inner-page .page-hero-premium .page-badge-premium {
+    margin: 0 auto var(--space-6);
+    display: inline-flex;
+}
+
+@media (max-width: 768px) {
+    .inner-page .page-hero-premium {
+        padding-top: calc(100px + var(--space-6));
+        padding-bottom: var(--space-10);
+    }
+
+    .inner-page .page-hero-premium .hero-title,
+    .inner-page .page-hero-premium .page-title-premium {
+        font-size: clamp(1.6rem, 7vw, 2.4rem);
+    }
+
+    .inner-page .page-hero-premium .hero-description,
+    .inner-page .page-hero-premium .page-description-premium {
+        font-size: 1rem;
+    }
+}
+
+.inner-page .section-premium {
+    padding: var(--space-12) 0;
+}
+
+.inner-page .section-header-premium {
+    text-align: left;
+    max-width: 820px;
+    margin: 0 0 var(--space-12);
+}
+
+.inner-page .section-header-premium .section-title-premium {
+    text-wrap: balance;
+}
+
+.inner-page .section-description-premium {
+    max-width: 720px;
+    margin-left: 0;
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+.inner-page :is(
+    .card-premium:not(.pricing-card-premium),
+    .module-card-premium,
+    .benefit-card-premium,
+    .partner-card-premium,
+    .tech-card-premium
+) {
+    position: relative;
+    border-radius: var(--radius-3xl);
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.9) 0%, rgba(249, 246, 255, 0.78) 100%);
+    border: 1px solid rgba(148, 167, 230, 0.34);
+    box-shadow:
+        0 18px 42px rgba(63, 70, 106, 0.12),
+        0 6px 20px rgba(148, 167, 230, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.78);
+    transition: all var(--transition-slow);
+    overflow: hidden;
+}
+
+.inner-page :is(
+    .card-premium:not(.pricing-card-premium),
+    .module-card-premium,
+    .benefit-card-premium,
+    .partner-card-premium,
+    .tech-card-premium
+)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-soft);
+    opacity: 0.38;
+    transition: opacity var(--transition-slow);
+    border-radius: inherit;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.inner-page :is(
+    .card-premium:not(.pricing-card-premium),
+    .module-card-premium,
+    .benefit-card-premium,
+    .partner-card-premium,
+    .tech-card-premium
+):hover {
+    transform: translateY(-8px);
+    border-color: rgba(148, 167, 230, 0.6);
+    box-shadow:
+        0 28px 60px rgba(63, 70, 106, 0.18),
+        0 12px 30px rgba(148, 167, 230, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+.inner-page :is(
+    .card-premium:not(.pricing-card-premium),
+    .module-card-premium,
+    .benefit-card-premium,
+    .partner-card-premium,
+    .tech-card-premium
+):hover::before {
+    opacity: 0.56;
+}
+
+.inner-page :is(
+    .card-premium:not(.pricing-card-premium),
+    .module-card-premium,
+    .benefit-card-premium,
+    .partner-card-premium,
+    .tech-card-premium
+) > * {
+    position: relative;
+    z-index: 1;
+}
+
+.inner-page .cta-card-premium {
+    border-radius: var(--radius-3xl);
+    border: 1px solid rgba(148, 167, 230, 0.34);
+    box-shadow:
+        0 18px 42px rgba(63, 70, 106, 0.12),
+        0 6px 20px rgba(148, 167, 230, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.78);
+}
+
+@media (max-width: 900px) {
+    .inner-page .section-premium {
+        padding: var(--space-16) 0;
+    }
+
+    .inner-page .section-header-premium {
+        margin-bottom: var(--space-12);
+    }
+
+    .inner-page :is(
+        .card-premium:not(.pricing-card-premium),
+        .module-card-premium,
+        .benefit-card-premium,
+        .partner-card-premium,
+        .tech-card-premium,
+        .cta-card-premium
+    ) {
+        border-radius: var(--radius-2xl);
+    }
+}
+
+@media (max-width: 768px) {
+    .inner-page .card-premium:has(.legal-content) {
+        padding: var(--space-6) var(--space-4) !important;
+    }
+    .inner-page .cta-card-premium,
+    .cta-card-premium {
+        padding: var(--space-8) var(--space-4) !important;
+        margin-left: calc(-1 * var(--space-6));
+        margin-right: calc(-1 * var(--space-6));
+        border-radius: 0 !important;
+        border-left: 0 !important;
+        border-right: 0 !important;
+    }
+    .inner-page .benefit-card-premium,
+    .benefit-card-premium {
+        padding: var(--space-6) var(--space-4) !important;
+    }
+    /* Предотвращаем обрезку контента закруглёнными краями на мобильных */
+    .inner-page :is(
+        .card-premium:not(.pricing-card-premium),
+        .module-card-premium,
+        .benefit-card-premium,
+        .partner-card-premium,
+        .tech-card-premium,
+        .company-card-premium,
+        .principle-card-premium
+    ) {
+        overflow: visible;
+    }
+
+    /* Меньший radius — контент не обрезается в углах */
+    .inner-page :is(
+        .benefit-card-premium,
+        .partner-card-premium,
+        .company-card-premium,
+        .principle-card-premium
+    ) {
+        border-radius: var(--radius-xl);
+    }
+}

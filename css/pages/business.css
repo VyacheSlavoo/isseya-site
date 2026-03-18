@@ -1,0 +1,796 @@
+/* ==========================================
+   BUSINESS PAGE - LUXURY STYLES
+   Corporate Solutions, Premium
+   ========================================== */
+
+/* ==========================================
+   PAGE HERO
+   ========================================== */
+
+.page-hero-premium {
+    padding: calc(100px + var(--space-20)) 0 var(--space-20);
+    text-align: center;
+    position: relative;
+}
+
+.page-hero-content-premium {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.page-badge-premium {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-6);
+    background: linear-gradient(135deg, rgba(122, 149, 224, 0.14) 0%, rgba(168, 184, 255, 0.14) 55%, rgba(255, 209, 218, 0.16) 100%);
+    color: var(--primary-800);
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(122, 149, 224, 0.32);
+    font-size: 0.8rem;
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: var(--space-6);
+    box-shadow: var(--accent-token-shadow);
+}
+
+
+
+.benefit-card-premium,
+.partner-card-premium,
+.cta-card-premium {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.92) 0%, rgba(249, 246, 255, 0.74) 100%);
+    border: 1px solid rgba(148, 167, 230, 0.32);
+    backdrop-filter: var(--glass-depth-blur) saturate(145%);
+    -webkit-backdrop-filter: var(--glass-depth-blur) saturate(145%);
+    box-shadow: var(--glass-depth-shadow);
+}
+
+.benefit-card-premium:hover,
+.partner-card-premium:hover {
+    box-shadow: var(--glass-depth-shadow-hover);
+    border-color: rgba(148, 167, 230, 0.55);
+}
+
+/* ==========================================
+   PROBLEM SECTION
+   ========================================== */
+
+.business-problem-section {
+    background: linear-gradient(180deg, #fffdf9 0%, #f9f6ff 50%, #f5f4fb 100%);
+}
+
+.business-problem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: var(--space-8);
+    margin-top: var(--space-10);
+}
+
+.problem-stat-card {
+    padding: var(--space-8);
+    text-align: center;
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(148, 167, 230, 0.3);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(244, 241, 251, 0.9) 100%);
+    box-shadow: 0 14px 34px rgba(63, 70, 106, 0.08);
+    transition: all var(--transition-base);
+}
+
+.problem-stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 44px rgba(63, 70, 106, 0.12);
+}
+
+.problem-stat-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto var(--space-5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-accent-text);
+    border-radius: var(--radius-lg);
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.4rem;
+}
+
+.problem-stat-value {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--primary-700);
+    margin-bottom: var(--space-3);
+    font-family: var(--font-display);
+}
+
+.problem-stat-label {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ==========================================
+   HOW WE HELP SECTION
+   ========================================== */
+
+.business-how-section {
+    background: linear-gradient(180deg, #f5f4fb 0%, #fffdf9 100%);
+}
+
+.business-how-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: var(--space-8);
+}
+
+.how-card {
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(148, 167, 230, 0.3);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(244, 241, 251, 0.9) 100%);
+    box-shadow: 0 14px 34px rgba(63, 70, 106, 0.08);
+    transition: all var(--transition-base);
+}
+
+.how-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 44px rgba(63, 70, 106, 0.12);
+}
+
+.how-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: var(--space-4);
+    color: var(--primary-700);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.how-card h3 i {
+    color: var(--primary-500);
+}
+
+.how-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+}
+
+/* ==========================================
+   BENEFITS SECTION
+   ========================================== */
+
+.business-benefits-section {
+    background: linear-gradient(180deg, #fffdf9 0%, #f5f4fb 80%, #fbfbfd 100%);
+}
+
+.benefits-grid-premium {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+    gap: var(--space-10);
+    grid-auto-flow: dense;
+    width: 100%;
+    min-width: 0;
+}
+
+.benefit-card-premium {
+    text-align: center;
+    padding: var(--space-10);
+    min-width: 0;
+    max-width: 100%;
+    background: var(--surface-100);
+    border: 1px solid rgba(177, 189, 234, 0.25);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-soft);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    display: flex;
+    flex-direction: column;
+}
+
+.benefit-card-premium:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl);
+    border-color: rgba(177, 189, 234, 0.55);
+}
+
+.benefit-icon-premium {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto var(--space-8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-secondary);
+    border-radius: var(--radius-xl);
+    font-size: 2.2rem;
+    color: rgba(255, 255, 255, 0.98);
+    box-shadow: var(--shadow-sm);
+    filter: drop-shadow(0 2px 4px rgba(31, 35, 55, 0.15));
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    flex-shrink: 0;
+}
+
+.benefit-icon-premium::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    background: inherit;
+    border-radius: inherit;
+    opacity: 0.3;
+    filter: blur(12px);
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.benefit-card-premium:hover .benefit-icon-premium {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: var(--shadow-md);
+}
+
+.benefit-card-premium:hover .benefit-icon-premium::after {
+    opacity: 0.5;
+}
+
+.benefit-card-premium h3 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-4);
+    color: var(--text-primary);
+    font-family: var(--font-display);
+}
+
+.benefit-card-premium p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 0.95rem;
+    flex: 1;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* ==========================================
+   PRICING SECTION — использует шаблон из home.css (pricing-grid-premium, pricing-card-premium)
+   ========================================== */
+
+.pricing-business-section {
+    background: linear-gradient(180deg, #f5f4fb 0%, #fbfbfd 100%);
+}
+
+.pricing-business-section .pricing-grid-premium {
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    max-width: min(900px, 100%);
+    width: 100%;
+    min-width: 0;
+}
+
+/* ==========================================
+   PARTNERS SECTION
+   ========================================== */
+
+.partners-section {
+    background: linear-gradient(180deg, #fbfbfd 0%, #fffef9 100%);
+}
+
+.partners-grid-premium {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    gap: var(--space-10);
+    grid-auto-flow: dense;
+    width: 100%;
+    min-width: 0;
+    max-width: min(1200px, 100%);
+    margin-left: auto;
+    margin-right: auto;
+    padding: var(--space-6) var(--space-6) 0;
+}
+
+.partner-card-premium {
+    text-align: center;
+    padding: var(--space-10);
+    min-width: 0;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--surface-100);
+    border: 1px solid rgba(177, 189, 234, 0.25);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-soft);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.partner-card-premium:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl);
+    border-color: rgba(177, 189, 234, 0.55);
+}
+
+.partner-logo-placeholder {
+    width: fit-content;
+    min-width: 80px;
+    max-width: 100%;
+    padding: 0 var(--space-4);
+    height: 100px;
+    margin: 0 auto var(--space-8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-accent-text);
+    border-radius: var(--radius-xl);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.98);
+    box-shadow: var(--accent-token-shadow);
+    filter: drop-shadow(0 2px 4px rgba(31, 35, 55, 0.15));
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.partner-logo-placeholder::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    background: inherit;
+    border-radius: inherit;
+    opacity: 0.3;
+    filter: blur(12px);
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.partner-card-premium:hover .partner-logo-placeholder {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 6px 16px rgba(177, 189, 234, 0.4),
+                0 3px 8px rgba(177, 189, 234, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.partner-card-premium:hover .partner-logo-placeholder::after {
+    opacity: 0.5;
+}
+
+.partner-card-premium h4 {
+    font-size: 1.3rem;
+    margin-bottom: var(--space-4);
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
+    min-width: 0;
+    text-align: center;
+}
+
+.partner-card-premium p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
+    min-width: 0;
+    text-align: center;
+}
+
+/* ==========================================
+   CTA SECTION
+   ========================================== */
+
+.cta-about-section {
+    padding: var(--space-24) 0;
+}
+
+.cta-card-premium {
+    text-align: center;
+    padding: var(--space-20);
+    background: linear-gradient(135deg, rgba(122, 149, 224, 0.08) 0%, rgba(163, 184, 255, 0.12) 50%, rgba(255, 209, 218, 0.1) 100%);
+    border: 1px solid rgba(177, 189, 234, 0.3);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--shadow-2xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-card-premium::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.cta-title-premium {
+    color: var(--text-primary);
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    margin-bottom: var(--space-4);
+    font-family: var(--font-display);
+    position: relative;
+    z-index: 1;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.cta-title-premium .gradient-text {
+    background: var(--gradient-accent-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cta-description-premium {
+    font-size: 1.375rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-12);
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.9;
+    position: relative;
+    z-index: 1;
+}
+
+.cta-buttons-premium {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================
+   CARD REFRESH - CLEANER BUSINESS CARDS
+   ========================================== */
+
+.benefit-card-premium,
+.partner-card-premium {
+    border: 1px solid rgba(148, 167, 230, 0.28);
+    background: linear-gradient(155deg, rgba(255, 255, 255, 0.94) 0%, rgba(246, 244, 252, 0.82) 100%);
+    box-shadow: 0 14px 36px rgba(63, 70, 106, 0.1), 0 6px 18px rgba(148, 167, 230, 0.14);
+}
+
+.benefit-card-premium:hover,
+.partner-card-premium:hover {
+    transform: translateY(-4px);
+    border-color: rgba(122, 149, 224, 0.42);
+    box-shadow: 0 20px 46px rgba(63, 70, 106, 0.14), 0 8px 22px rgba(148, 167, 230, 0.2);
+}
+
+.benefit-card-premium {
+    text-align: left;
+    gap: var(--space-5);
+}
+
+.benefit-icon-premium {
+    width: 64px;
+    height: 64px;
+    margin: 0 0 var(--space-5);
+    border-radius: var(--radius-lg);
+    font-size: 1.65rem;
+}
+
+.benefit-icon-premium::after {
+    display: none;
+}
+
+.benefit-card-premium:hover .benefit-icon-premium {
+    transform: scale(1.03);
+}
+
+.benefit-card-premium h3 {
+        margin-bottom: var(--space-3);
+        font-size: 1.15rem;
+    }
+
+.benefit-card-premium p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+.partner-card-premium {
+    text-align: center;
+}
+
+.partner-logo-placeholder {
+    width: 76px;
+    height: 76px;
+    margin: 0 0 var(--space-6);
+    border-radius: var(--radius-lg);
+    font-size: 1.5rem;
+}
+
+.partner-logo-placeholder::after {
+    display: none;
+}
+
+.partner-card-premium:hover .partner-logo-placeholder {
+    transform: scale(1.03);
+}
+
+.partner-card-premium h4 {
+    font-size: 1.15rem;
+    margin-bottom: var(--space-3);
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.partner-card-premium p {
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 768px) {
+    .business-problem-grid,
+    .business-how-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+
+    .problem-stat-card,
+    .how-card {
+        padding: var(--space-6);
+    }
+
+    .problem-stat-value {
+        font-size: 1.5rem;
+    }
+
+    .benefits-grid-premium,
+    .pricing-business-section .pricing-grid-premium,
+    .partners-grid-premium {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+
+    .benefit-card-premium,
+    .partner-card-premium {
+        padding: var(--space-6);
+    }
+
+    .benefit-icon-premium {
+        width: 52px;
+        height: 52px;
+        font-size: 1.35rem;
+    }
+
+    .benefit-card-premium h3 {
+        font-size: 1.05rem;
+    }
+
+    .benefit-card-premium p {
+        font-size: 0.9rem;
+    }
+
+    .partner-logo-placeholder {
+        width: 56px;
+        min-width: 56px;
+        height: 56px;
+        font-size: 1rem;
+        padding: 0 var(--space-2);
+    }
+
+    .partners-grid-premium {
+        padding: var(--space-6) var(--space-4) 0;
+    }
+
+    .partner-card-premium {
+        padding: var(--space-6) var(--space-4);
+    }
+
+    .partner-card-premium h4 {
+        font-size: 1rem;
+    }
+
+    .partner-card-premium p {
+        font-size: 0.88rem;
+    }
+
+    .popular-badge-premium {
+        font-size: 0.8rem;
+        padding: var(--space-2) var(--space-4);
+    }
+
+    /* Убираем overflow: hidden — закруглённые края обрезали контент */
+    .benefit-card-premium,
+    .partner-card-premium {
+        overflow: visible;
+    }
+}
+
+@media (max-width: 480px) {
+    .benefit-card-premium {
+        padding: var(--space-5);
+    }
+
+    .partner-card-premium {
+        padding: var(--space-5) var(--space-4);
+    }
+
+    .benefit-icon-premium {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+    }
+
+    .partner-logo-placeholder {
+        width: 48px;
+        min-width: 48px;
+        height: 48px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .benefits-grid-premium {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .pricing-business-section .pricing-grid-premium {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 900px;
+    }
+
+    .partners-grid-premium {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* ==========================================
+   HOME REFERENCE ALIGNMENT - BUSINESS PAGE
+   ========================================== */
+
+.business-problem-section .section-header-premium,
+.business-how-section .section-header-premium,
+.business-benefits-section .section-header-premium,
+.pricing-business-section .section-header-premium,
+.partners-section .section-header-premium {
+    margin-bottom: var(--space-12);
+}
+
+.benefits-grid-premium,
+.pricing-business-section .pricing-grid-premium,
+.partners-grid-premium {
+    gap: var(--space-8);
+}
+
+.benefit-card-premium,
+.partner-card-premium {
+    position: relative;
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(148, 167, 230, 0.3);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(244, 241, 251, 0.86) 100%);
+    box-shadow: 0 14px 34px rgba(63, 70, 106, 0.1), 0 6px 16px rgba(148, 167, 230, 0.12);
+    overflow: hidden;
+    min-width: 0;
+}
+
+.benefit-card-premium::before,
+.partner-card-premium::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: var(--space-6);
+    right: var(--space-6);
+    height: 3px;
+    border-radius: var(--radius-full);
+    background: var(--gradient-accent-text);
+    opacity: 0.85;
+}
+
+.benefit-card-premium:hover,
+.partner-card-premium:hover {
+    transform: translateY(-5px);
+    border-color: rgba(122, 149, 224, 0.44);
+    box-shadow: 0 22px 48px rgba(63, 70, 106, 0.14), 0 8px 20px rgba(148, 167, 230, 0.18);
+}
+
+.benefit-card-premium {
+    padding: var(--space-8);
+}
+
+.benefit-icon-premium,
+.partner-logo-placeholder {
+    height: 62px;
+    margin-bottom: var(--space-4);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.benefit-icon-premium {
+    width: 62px;
+    font-size: 1.45rem;
+}
+.partner-logo-placeholder {
+    width: fit-content;
+    min-width: 62px;
+    padding: 0 var(--space-3);
+    font-size: 1.15rem;
+}
+
+/* Benefit card color accents - иконки используют gradient-secondary как в блоке "Как это работает" */
+.benefit--team { border-left: 4px solid #7a95e0; }
+.benefit--analytics { border-left: 4px solid #6b8cdb; }
+.benefit--branding { border-left: 4px solid #a87ae0; }
+.benefit--integration { border-left: 4px solid #7ae0b8; }
+.benefit--manager { border-left: 4px solid #e0a87a; }
+.benefit--security { border-left: 4px solid #7ae0d4; }
+
+.partner-card-premium {
+    padding: var(--space-8);
+}
+
+@media (max-width: 900px) {
+    .business-benefits-section .section-header-premium,
+    .pricing-business-section .section-header-premium,
+    .partners-section .section-header-premium {
+        margin-bottom: var(--space-10);
+    }
+
+    .benefit-card-premium,
+    .partner-card-premium {
+        border-radius: var(--radius-lg);
+        padding: var(--space-7);
+    }
+
+    .benefits-grid-premium,
+    .pricing-business-section .pricing-grid-premium,
+    .partners-grid-premium {
+        gap: var(--space-6);
+    }
+}
+
+/* ==========================================
+   TEMPLATE UNIFICATION - STRICT HOME CARD PATTERN
+   ========================================== */
+
+.benefit-card-premium,
+.partner-card-premium {
+    border-radius: var(--radius-3xl);
+    transition: all var(--transition-slow);
+}
+
+.benefit-card-premium::before,
+.partner-card-premium::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    height: auto;
+    left: 0;
+    right: 0;
+    background: var(--gradient-soft);
+    opacity: 0.38;
+    border-radius: inherit;
+    transition: opacity var(--transition-slow);
+    z-index: 0;
+    pointer-events: none;
+    display: block;
+}
+
+.benefit-card-premium:hover,
+.partner-card-premium:hover {
+    transform: translateY(-8px);
+}
+
+.benefit-card-premium:hover::before,
+.partner-card-premium:hover::before {
+    opacity: 0.56;
+}
+
+.benefit-card-premium > *,
+.partner-card-premium > * {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 900px) {
+    .benefit-card-premium,
+    .partner-card-premium {
+        border-radius: var(--radius-2xl);
+    }
+}
