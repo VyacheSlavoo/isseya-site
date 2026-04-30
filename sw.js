@@ -1,15 +1,19 @@
 // Service Worker for Иссея
 // Basic caching strategy for offline support
 
-const CACHE_NAME = 'isseya-v5';
+const CACHE_NAME = 'isseya-v6';
 const CACHE_URLS = [
     './',
     './css/premium.css',
     './css/pages/home.css',
+    './css/pages/contact.css',
+    './css/pages/unified-template.css',
     './js/premium.js',
     './js/cookie-consent.js',
     './js/forms.js',
-    './manifest.json'
+    './manifest.json',
+    './pages/privacy.html',
+    './pages/terms.html'
 ];
 
 // Install - Cache resources
@@ -54,33 +58,39 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-    event.respondWith(
-        caches.match(event.request)
-            .then((response) => {
-                // Return cached version or fetch from network
-                return response || fetch(event.request).then((response) => {
-                    // Don't cache non-successful responses
-                    if (!response || response.status !== 200 || response.type !== 'basic') {
-                        return response;
-                    }
-
-                    // Clone the response
-                    const responseToCache = response.clone();
-
-                    caches.open(CACHE_NAME)
-                        .then((cache) => {
+    if (event.request.mode === 'navigate' || event.request.destination === 'document') {
+        event.respondWith(
+            fetch(event.request)
+                .then((response) => {
+                    if (response && response.status === 200 && response.type === 'basic') {
+                        const responseToCache = response.clone();
+                        caches.open(CACHE_NAME).then((cache) => {
                             cache.put(event.request, responseToCache);
                         });
+                    }
 
                     return response;
-                });
-            })
-            .catch(() => {
-                // Return offline page if available
-                if (event.request.destination === 'document') {
-                    return caches.match('./');
+                })
+                .catch(() => caches.match(event.request).then((response) => response || caches.match('./')))
+        );
+        return;
+    }
+
+    event.respondWith(
+        caches.match(event.request)
+            .then((response) => response || fetch(event.request).then((response) => {
+                // Don't cache non-successful responses
+                if (!response || response.status !== 200 || response.type !== 'basic') {
+                    return response;
                 }
-            })
+
+                const responseToCache = response.clone();
+                caches.open(CACHE_NAME).then((cache) => {
+                    cache.put(event.request, responseToCache);
+                });
+
+                return response;
+            }))
     );
 });
 
