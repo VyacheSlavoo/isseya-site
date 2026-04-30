@@ -29,38 +29,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const navMenu = document.querySelector('.nav-links');
 
     if (mobileMenuToggle && navMenu) {
-        if (mobileMenuToggle.dataset.menuInitialized === 'true') {
-            return;
+        if (mobileMenuToggle.dataset.menuInitialized !== 'true') {
+            mobileMenuToggle.dataset.menuInitialized = 'true';
+
+            mobileMenuToggle.addEventListener('click', () => {
+                const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+                mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+                navMenu.classList.toggle('open');
+
+                // Prevent body scroll when menu is open
+                document.body.style.overflow = isExpanded ? 'auto' : 'hidden';
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    navMenu.classList.remove('open');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Close menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    navMenu.classList.remove('open');
+                    document.body.style.overflow = 'auto';
+                    mobileMenuToggle.focus();
+                }
+            });
         }
-        mobileMenuToggle.dataset.menuInitialized = 'true';
-
-        mobileMenuToggle.addEventListener('click', () => {
-            const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
-            mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
-            navMenu.classList.toggle('open');
-
-            // Prevent body scroll when menu is open
-            document.body.style.overflow = isExpanded ? 'auto' : 'hidden';
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!mobileMenuToggle.contains(e.target) && !navMenu.contains(e.target)) {
-                mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                navMenu.classList.remove('open');
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        // Close menu on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && navMenu.classList.contains('open')) {
-                mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                navMenu.classList.remove('open');
-                document.body.style.overflow = 'auto';
-                mobileMenuToggle.focus();
-            }
-        });
     }
 
     // --- 1.6 Sticky Navigation with Performance ---

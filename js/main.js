@@ -646,9 +646,9 @@
 // SERVICE WORKER REGISTRATION (Optional - for PWA)
 // ==========================================
 
-if ('serviceWorker' in navigator && location.protocol === 'https:') {
+if ('serviceWorker' in navigator && (window.isSecureContext || location.hostname === 'localhost')) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').then(
+        navigator.serviceWorker.register('./sw.js', { scope: './' }).then(
             registration => {
                 console.log('ServiceWorker registered:', registration.scope);
             },

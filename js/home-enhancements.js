@@ -77,9 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Progressive Web App Features ---
     // Service Worker registration for offline capability
-    if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator && (window.isSecureContext || location.hostname === 'localhost')) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js')
+            navigator.serviceWorker.register('./sw.js', { scope: './' })
                 .then(registration => {
                     console.log('SW registered: ', registration);
                 })

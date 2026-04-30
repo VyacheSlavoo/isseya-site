@@ -12,17 +12,3 @@ Sitemap: https://иссея.рф/sitemap.xml
 # Crawl-delay for all bots
 Crawl-delay: 1
 
-# Yandex specific
-User-agent: Yandex
-Allow: /
-
-# Google specific
-User-agent: Googlebot
-Allow: /
-
-# Bing specific
-User-agent: bingbot
-Allow: /
-
-
-

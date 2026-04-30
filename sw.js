@@ -1,14 +1,15 @@
 // Service Worker for Иссея
 // Basic caching strategy for offline support
 
-const CACHE_NAME = 'isseya-v2';
+const CACHE_NAME = 'isseya-v5';
 const CACHE_URLS = [
-    '/',
-    '/css/premium.css',
-    '/css/pages/home.css',
-    '/js/premium.js',
-    '/js/analytics.js',
-    '/manifest.json'
+    './',
+    './css/premium.css',
+    './css/pages/home.css',
+    './js/premium.js',
+    './js/cookie-consent.js',
+    './js/forms.js',
+    './manifest.json'
 ];
 
 // Install - Cache resources
@@ -77,7 +78,7 @@ self.addEventListener('fetch', (event) => {
             .catch(() => {
                 // Return offline page if available
                 if (event.request.destination === 'document') {
-                    return caches.match('/');
+                    return caches.match('./');
                 }
             })
     );

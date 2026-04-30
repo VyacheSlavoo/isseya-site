@@ -1,15 +1,16 @@
 {
-  "name": "Иссея - AI-ассистент психологического благополучия",
+  "name": "Иссея - ассистент психологического благополучия",
   "short_name": "Иссея",
-  "description": "Персональный AI-психолог 24/7. Научно обоснованные методы КПТ для студентов.",
-  "start_url": "/",
+  "description": "Ассистент психологического благополучия 24/7. Научно обоснованные методы КПТ для студентов.",
+  "start_url": ".",
+  "scope": ".",
   "display": "standalone",
   "background_color": "#fff9eb",
   "theme_color": "#e5d4fa",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/images/favicon.svg",
+      "src": "images/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"

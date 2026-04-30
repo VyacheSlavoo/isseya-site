@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">AA5O - -?A8E>;>3 4;O ABC45=B>2</title>
+  <desc id="desc">1;>6:0 A09B0 AA5O 4;O A>F80;L=KE A5B59</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff9f2"/>
+      <stop offset="0.55" stop-color="#f7f4ff"/>
+      <stop offset="1" stop-color="#fffdf9"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7682be"/>
+      <stop offset="0.55" stop-color="#a8b8ff"/>
+      <stop offset="1" stop-color="#f7c4cb"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="205" cy="135" r="170" fill="#d0d7f6" opacity="0.55"/>
+  <circle cx="1015" cy="115" r="210" fill="#ffe3e6" opacity="0.65"/>
+  <circle cx="930" cy="510" r="180" fill="#cbe2f5" opacity="0.45"/>
+  <rect x="92" y="86" width="1016" height="458" rx="56" fill="#ffffff" opacity="0.74"/>
+  <rect x="112" y="106" width="976" height="418" rx="44" fill="none" stroke="#b1bdea" stroke-opacity="0.45" stroke-width="2"/>
+  <text x="150" y="230" fill="#363753" font-family="Arial, sans-serif" font-size="82" font-weight="700">AA5O</text>
+  <text x="150" y="305" fill="#505885" font-family="Arial, sans-serif" font-size="42" font-weight="700">-?A8E>;>3 4;O ABC45=B>2</text>
+  <text x="150" y="375" fill="#54567a" font-family="Arial, sans-serif" font-size="31">>445@6:0 <5=B0;L=>3> 74>@>2LO, "-?@0:B8:8</text>
+  <text x="150" y="420" fill="#54567a" font-family="Arial, sans-serif" font-size="31">8 15@56=0O ?><>IL 2 A;>6=K5 <><5=BK</text>
+  <rect x="150" y="462" width="318" height="54" rx="27" fill="url(#accent)"/>
+  <text x="188" y="498" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="700">8AA5O.@D</text>
+  <path d="M792 228c0-48 39-87 87-87s87 39 87 87-39 87-87 87-87-39-87-87Z" fill="#f7c4cb" opacity="0.78"/>
+  <path d="M735 356c0-70 57-127 127-127s127 57 127 127-57 127-127 127-127-57-127-127Z" fill="#b1bdea" opacity="0.74"/>
+  <path d="M828 317c23-23 60-23 83 0s23 60 0 83l-49 49-49-49c-23-23-23-60 0-83 4-4 9-8 15-11Z" fill="#ffffff" opacity="0.92"/>
+</svg>

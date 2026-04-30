@@ -4,8 +4,6 @@
    Pastel Palette - Maximum Luxury
    ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Unbounded:wght@600;700;800&display=swap');
-
 :root {
     /* Основа палитры по новому референсу */
     --primary-900: #3f466a;
@@ -133,8 +131,8 @@
     --space-32: 8rem;
     --space-40: 10rem;
 
-    --font-display: 'Unbounded', 'Inter', 'SF Pro Display', sans-serif;
-    --font-body: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-display: 'Unbounded', 'Century Gothic', 'Lato', 'SF Pro Display', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Lato', 'SF Pro Text', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 
     --font-light: 300;
     --font-normal: 400;
@@ -1742,6 +1740,9 @@ strong {
         pointer-events: none;
         transition: all 220ms ease;
         z-index: 1001;
+        max-height: calc(100dvh - 110px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .nav-links.open {
@@ -1775,6 +1776,18 @@ strong {
     .nav-container {
         padding: 0 var(--space-4);
     }
+
+    .premium-nav .logo-premium {
+        width: 150px !important;
+        height: 56px !important;
+        flex: 0 0 150px;
+    }
+
+    .premium-nav .logo-premium img,
+    .premium-nav .logo-premium .logo-mark {
+        height: 92px !important;
+        width: auto !important;
+    }
     
     .nav-links {
         left: var(--space-4);
@@ -1804,6 +1817,12 @@ strong {
         grid-template-columns: 1fr;
         gap: var(--space-10);
     }
+
+    .footer-bottom-premium p,
+    .footer-description-premium,
+    .footer-contacts-premium {
+        overflow-wrap: anywhere;
+    }
     
     .container-premium {
         padding: 0 var(--space-6);
@@ -1829,6 +1848,41 @@ strong {
     .breadcrumb-premium-list {
         width: 100%;
         border-radius: var(--radius-lg);
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .logo-premium:hover,
+    .card-premium:hover,
+    .feature-card-premium:hover,
+    .pricing-card-premium:hover,
+    .contact-card-premium:hover,
+    .btn-premium:hover,
+    .back-to-top-premium:hover {
+        transform: none !important;
+    }
+}
+
+@media (max-width: 420px) {
+    .nav-container {
+        padding: 0 var(--space-3);
+        gap: var(--space-2);
+    }
+
+    .premium-nav .logo-premium {
+        width: 126px !important;
+        height: 52px !important;
+        flex-basis: 126px;
+    }
+
+    .premium-nav .logo-premium img,
+    .premium-nav .logo-premium .logo-mark {
+        height: 78px !important;
+    }
+
+    .nav-cta {
+        padding: var(--space-3) !important;
+        min-width: 44px;
     }
 }
 

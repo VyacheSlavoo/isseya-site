@@ -49,6 +49,13 @@
                     }
                     this.updateSubmitState(input.form);
                 });
+
+                if (input.type === 'checkbox') {
+                    input.addEventListener('change', () => {
+                        this.validateField(input);
+                        this.updateSubmitState(input.form);
+                    });
+                }
             });
         },
         
@@ -80,7 +87,13 @@
             let errorMessage = '';
             
             // Required check
-            if (field.hasAttribute('required') && value === '') {
+            if (field.type === 'checkbox' && field.hasAttribute('required') && !field.checked) {
+                isValid = false;
+                errorMessage = 'Необходимо дать согласие на обработку персональных данных';
+            }
+            
+            // Required check
+            else if (field.hasAttribute('required') && value === '') {
                 isValid = false;
                 errorMessage = 'Это поле обязательно для заполнения';
             }
@@ -162,7 +175,7 @@
         clearFieldError: function(field) {
             field.classList.remove('error');
             field.removeAttribute('aria-invalid');
-            if (field.value.trim() !== '') {
+            if (field.type === 'checkbox' ? field.checked : field.value.trim() !== '') {
                 field.classList.add('valid');
             } else {
                 field.classList.remove('valid');
@@ -180,7 +193,9 @@
             if (!submitButton) return;
 
             const requiredFields = form.querySelectorAll('input[required], textarea[required], select[required]');
-            const hasEmpty = Array.from(requiredFields).some(field => field.value.trim() === '');
+            const hasEmpty = Array.from(requiredFields).some(field => {
+                return field.type === 'checkbox' ? !field.checked : field.value.trim() === '';
+            });
             const hasErrors = form.querySelector('.error') !== null;
 
             submitButton.disabled = hasEmpty || hasErrors;
@@ -199,72 +214,42 @@
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
             
-            // Log data (для разработки)
-            console.log('Form Data:', data);
-            
-            // Simulate API call (replace with real endpoint)
             this.sendToServer(data)
                 .then(response => {
                     this.showSuccess(form, 'Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.');
                     form.reset();
-                    
-                    // Track in analytics
-                    if (window.AnalyticsModule) {
-                        window.AnalyticsModule.ga.trackFormSubmit('contact_form');
-                        window.AnalyticsModule.ym.reachGoal('contact_submit');
-                    }
+                    document.dispatchEvent(new CustomEvent('isseya:form-submit-success', {
+                        detail: { formName: 'contact_form' }
+                    }));
                 })
                 .catch(error => {
                     this.showError(form, 'Произошла ошибка при отправке. Пожалуйста, попробуйте позже или напишите на psychoteka@mail.ru');
                     console.error('Form submit error:', error);
                 })
                 .finally(() => {
-                    submitButton.disabled = false;
                     submitButton.innerHTML = originalText;
+                    this.updateSubmitState(form);
                 });
         },
         
-        // ============================================================
-        // GOOGLE APPS SCRIPT — отправка в Google Sheets
-        // ============================================================
-        // ВАЖНО: в Apps Script замените код на следующий
-        // (используем e.parameter, а не JSON.parse — это важно!):
-        //
-        //   function doPost(e) {
-        //     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-        //     sheet.appendRow([
-        //       new Date(),
-        //       e.parameter.name    || '',
-        //       e.parameter.email   || '',
-        //       e.parameter.subject || '',
-        //       e.parameter.message || '',
-        //       e.parameter.source  || ''
-        //     ]);
-        //     return ContentService
-        //       .createTextOutput(JSON.stringify({success: true}))
-        //       .setMimeType(ContentService.MimeType.JSON);
-        //   }
-        //
-        // После изменения кода: "Развернуть" → "Управление развёртываниями"
-        // → карандаш → Версия: "Новая версия" → "Развернуть"
-        // ============================================================
-        
         sendToServer: function(data) {
             const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyEHKtQZG6eT3C3_1nGqULAunArnQ2s63MxA1dtEJLCrIUtKM8BtoEpiLoRR909r4NZ/exec';
+            const messageWithContact = [
+                `Телефон: ${data.phone || ''}`,
+                `Эл. почта: ${data.email || ''}`,
+                '',
+                data.message || ''
+            ].join('\n');
 
-            if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'ВСТАВЬТЕ_СЮДА_URL_ВЕБ_ПРИЛОЖЕНИЯ') {
-                console.warn('⚠️ forms.js: URL Google Apps Script не настроен.');
-                return Promise.resolve({ success: true, dev: true });
-            }
-
-            // mode:'no-cors' не поддерживает Content-Type:application/json,
-            // поэтому используем URLSearchParams — Apps Script читает через e.parameter.*
             const params = new URLSearchParams({
-                name:    data.name    || '',
-                email:   data.email   || '',
-                subject: data.subject || '',
-                message: data.message || '',
-                source:  window.location.href,
+                name: data.name || '',
+                email: data.email || '',
+                phone: data.phone || '',
+                subject: data.phone ? `${data.subject || ''} (${data.phone})` : (data.subject || ''),
+                message: messageWithContact,
+                personal_data_consent: data.personal_data_consent === 'accepted' ? 'accepted' : '',
+                consent_at: data.personal_data_consent === 'accepted' ? new Date().toISOString() : '',
+                source: window.location.href,
                 sent_at: new Date().toISOString()
             });
 

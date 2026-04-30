@@ -67,22 +67,6 @@
         });
     }
 
-    function initSkeletonLoading() {
-        const skeletonTargets = document.querySelectorAll(
-            '.card-premium, .blog-card-premium, .contact-card-premium, .form-card-premium, .tech-card-premium, .module-card-premium'
-        );
-        if (skeletonTargets.length === 0) return;
-
-        skeletonTargets.forEach(el => el.classList.add('skeleton-loading'));
-
-        const clear = () => skeletonTargets.forEach(el => el.classList.remove('skeleton-loading'));
-        if (document.readyState === 'complete') {
-            setTimeout(clear, 500);
-        } else {
-            window.addEventListener('load', () => setTimeout(clear, 500), { once: true });
-        }
-    }
-
     function initRippleInteraction() {
         const rippleTargets = document.querySelectorAll('.btn-premium, .blog-read-more');
         rippleTargets.forEach(target => {
@@ -300,7 +284,6 @@
     ensureBrandLogos();
     initScrollProgress();
     initLazyImages();
-    initSkeletonLoading();
     initRippleInteraction();
     initSectionReveal();
     initMobileMenu();
