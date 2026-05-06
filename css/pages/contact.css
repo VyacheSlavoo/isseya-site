@@ -11,6 +11,69 @@
     padding: var(--space-20) 0;
 }
 
+/* Card-обёртка вокруг встроенной Яндекс Формы. Сама форма — iframe, мы
+   подаём её внутри нашего «премиум»-кадра, чтобы визуально она читалась
+   как часть сайта, а не как чужой элемент. */
+.form-card-premium .form-card-header {
+    margin-bottom: var(--space-6);
+}
+.form-card-eyebrow {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--primary-700, #5f6ba3);
+    margin-bottom: var(--space-3);
+}
+.form-card-premium .form-card-header h2 {
+    margin: 0 0 var(--space-3);
+}
+.form-card-lead {
+    color: var(--text-secondary, #54567a);
+    line-height: 1.6;
+    margin: 0;
+}
+.form-card-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-6);
+    display: grid;
+    gap: var(--space-3);
+}
+.form-card-bullets li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: 0.95rem;
+    color: var(--text-secondary, #54567a);
+}
+.form-card-bullets i {
+    color: var(--primary-700, #5f6ba3);
+    width: 18px;
+    text-align: center;
+}
+
+.contact-yandex-form {
+    display: block;
+    width: 100%;
+    min-height: 720px;
+    border: 0;
+    border-radius: var(--radius-2xl, 18px);
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(63, 70, 106, 0.06) inset, 0 8px 28px rgba(63, 70, 106, 0.08);
+}
+
+@media (max-width: 768px) {
+    .contact-yandex-form {
+        min-height: 820px;
+        border-radius: var(--radius-xl, 14px);
+    }
+    .form-card-bullets {
+        margin-bottom: var(--space-5);
+    }
+}
+
 .contact-grid-premium {
     display: grid;
     grid-template-columns: 1fr 1.6fr;
