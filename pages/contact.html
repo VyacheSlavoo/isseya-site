@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://forms.yandex.ru; base-uri 'self'; form-action 'self' https://forms.yandex.ru;">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="description" content="Свяжитесь с командой Иссея - мы всегда готовы помочь и ответить на ваши вопросы.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://иссея.рф/pages/contact.html">
@@ -13,13 +15,9 @@
     <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
     <meta name="theme-color" content="#e5d4fa">
     <title>Контакты - Иссея | Свяжитесь с нами</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700;900&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700;900&family=Unbounded:wght@600;700;800&display=swap"></noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+    <link rel="stylesheet" href="../fonts/isseya-fonts.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
     
     <link rel="preload" href="../css/premium.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="../css/premium.css"></noscript>
@@ -190,10 +188,18 @@
                             <label class="form-consent">
                                 <input type="checkbox" id="personal-data-consent" name="personal_data_consent" value="accepted" required>
                                 <span>
-                                    Я даю согласие ООО «ПСИХОТЕКА» на обработку моих персональных данных для ответа на обращение и соглашаюсь с
-                                    <a href="privacy.html" target="_blank" rel="noopener">Политикой конфиденциальности</a>.
+                                    Я даю согласие ООО «ПСИХОТЕКА» (ИНН 7801745600) на обработку моих персональных данных
+                                    для ответа на обращение и согласен(на) с тем, что данные передаются обработчику —
+                                    ООО «ЯНДЕКС» (сервис «Яндекс Формы», серверы в РФ). Подробности — в
+                                    <a href="privacy.html" target="_blank" rel="noopener">Политике конфиденциальности</a>.
                                 </span>
                             </label>
+
+                            <!-- honeypot против спам-ботов: реальные люди это поле не видят -->
+                            <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
+                                <label for="website_url">Не заполняйте это поле</label>
+                                <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off">
+                            </div>
                             
                             <button type="submit" class="btn-premium btn-primary form-submit-btn">
                                 <span>Отправить сообщение</span>

@@ -1,13 +1,14 @@
 // Service Worker for Иссея
 // Basic caching strategy for offline support
 
-const CACHE_NAME = 'isseya-v6';
+const CACHE_NAME = 'isseya-v7';
 const CACHE_URLS = [
     './',
     './css/premium.css',
     './css/pages/home.css',
     './css/pages/contact.css',
     './css/pages/unified-template.css',
+    './fonts/isseya-fonts.css',
     './js/premium.js',
     './js/cookie-consent.js',
     './js/forms.js',

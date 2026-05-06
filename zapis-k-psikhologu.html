@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://forms.yandex.ru; base-uri 'self'; form-action 'self' https://forms.yandex.ru;">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="robots" content="noindex">
+    <title>Запись к психологу</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        html {
+            min-height: 100%;
+            background: #050308;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Instrument Sans", system-ui, sans-serif;
+            color: #ece6f2;
+            display: grid;
+            place-items: center;
+            padding: 28px;
+            position: relative;
+            overflow-x: hidden;
+            background:
+                radial-gradient(ellipse 85% 65% at 50% 42%, #1a0f18 0%, transparent 58%),
+                radial-gradient(ellipse 120% 80% at 50% 120%, #2a1530 0%, #050308 45%),
+                #050308;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 45%, transparent 30%, rgba(0, 0, 0, 0.82) 100%);
+            z-index: 0;
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.035;
+            z-index: 1;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            animation: grain 8s steps(10) infinite;
+        }
+        @keyframes grain {
+            0%, 100% { transform: translate(0, 0); }
+            10% { transform: translate(-2%, -4%); }
+            30% { transform: translate(3%, -2%); }
+            50% { transform: translate(-1%, 2%); }
+            70% { transform: translate(4%, 3%); }
+            90% { transform: translate(-3%, 1%); }
+        }
+        main {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 440px;
+            width: 100%;
+        }
+        .tag {
+            font-size: 0.72rem;
+            letter-spacing: 0.42em;
+            text-transform: uppercase;
+            color: rgba(236, 230, 242, 0.38);
+            margin: 0 0 1.25rem;
+            font-weight: 600;
+        }
+        h1 {
+            font-family: "Cinzel", "Times New Roman", serif;
+            font-size: clamp(1.35rem, 5vw, 1.85rem);
+            font-weight: 700;
+            line-height: 1.35;
+            margin: 0 0 2.35rem;
+            letter-spacing: 0.06em;
+            text-shadow: 0 0 40px rgba(180, 140, 200, 0.15);
+        }
+        .btn-wrap {
+            position: relative;
+            filter: drop-shadow(0 0 28px rgba(139, 90, 140, 0.35));
+        }
+        .btn-wrap::before {
+            content: "";
+            position: absolute;
+            inset: -8px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(255, 200, 220, 0.12), transparent 40%, rgba(160, 100, 180, 0.08));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+        .btn-wrap.pulse::before {
+            opacity: 1;
+            animation: halo 1.8s ease-in-out infinite;
+        }
+        @keyframes halo {
+            0%, 100% { transform: scale(1); opacity: 0.35; }
+            50% { transform: scale(1.04); opacity: 0.85; }
+        }
+        button {
+            width: 100%;
+            border: 1px solid rgba(255, 235, 245, 0.22);
+            border-radius: 999px;
+            padding: 1.4rem 1.6rem;
+            font: inherit;
+            font-weight: 600;
+            font-size: clamp(1rem, 3.8vw, 1.22rem);
+            letter-spacing: 0.02em;
+            cursor: pointer;
+            color: #120810;
+            background: linear-gradient(180deg, #fff5fb 0%, #e8c4dc 42%, #c89bb8 100%);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.65),
+                0 12px 40px rgba(0, 0, 0, 0.55);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        }
+        button:hover:not(:disabled) {
+            transform: translateY(-3px) scale(1.01);
+            filter: brightness(1.06);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.75),
+                0 18px 48px rgba(40, 10, 40, 0.65);
+        }
+        button:active:not(:disabled) {
+            transform: translateY(-1px) scale(0.995);
+        }
+        button:focus-visible {
+            outline: 2px solid #f0a8c8;
+            outline-offset: 5px;
+        }
+        button[disabled] {
+            opacity: 0.42;
+            cursor: not-allowed;
+            transform: none;
+            filter: grayscale(0.35) brightness(0.95);
+        }
+        #msg {
+            margin-top: 2.25rem;
+            font-family: "Cinzel", "Times New Roman", serif;
+            font-size: clamp(1.35rem, 5vw, 1.75rem);
+            font-weight: 700;
+            line-height: 1.4;
+            letter-spacing: 0.04em;
+            min-height: 4.2em;
+            opacity: 0;
+            transform: scale(0.94);
+            filter: blur(6px);
+            transition:
+                opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        #msg.visible {
+            opacity: 1;
+            transform: scale(1);
+            filter: blur(0);
+        }
+        #msg .line-main {
+            display: block;
+            color: #ffb8c8;
+            text-shadow:
+                0 0 24px rgba(255, 100, 130, 0.35),
+                0 0 60px rgba(180, 60, 100, 0.2);
+        }
+        #msg small {
+            display: block;
+            margin-top: 1rem;
+            font-family: "Instrument Sans", system-ui, sans-serif;
+            font-size: 0.52em;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            line-height: 1.55;
+            color: rgba(236, 230, 242, 0.52);
+            max-width: 34ch;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #flash {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 50;
+            background: #4a0610;
+            opacity: 0;
+        }
+        #flash.on {
+            animation: flashbang 0.55s ease-out forwards;
+        }
+        @keyframes flashbang {
+            0% { opacity: 0; }
+            12% { opacity: 0.42; }
+            100% { opacity: 0; }
+        }
+        .shake {
+            animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translate(0, 0); }
+            15% { transform: translate(-6px, 2px) rotate(-0.4deg); }
+            30% { transform: translate(8px, -3px) rotate(0.5deg); }
+            45% { transform: translate(-10px, 1px) rotate(-0.35deg); }
+            60% { transform: translate(7px, -2px) rotate(0.3deg); }
+            75% { transform: translate(-4px, 2px) rotate(-0.2deg); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            body::after { animation: none; opacity: 0.02; }
+            .btn-wrap.pulse::before { animation: none; opacity: 0.25; }
+            #msg { transition-duration: 0.25s; filter: none; }
+            #flash.on { animation: none; opacity: 0; }
+            .shake { animation: none; }
+        }
+    </style>
+</head>
+<body>
+    <div id="flash" aria-hidden="true"></div>
+    <main id="stage">
+        <p class="tag">Шаг один. Последний.</p>
+        <h1>Судьба предлагает шанс.<br>Она его заберёт.</h1>
+        <div class="btn-wrap pulse" id="btnWrap">
+            <button type="button" id="book">Записаться к психологу</button>
+        </div>
+        <p id="msg" role="status" aria-live="assertive"></p>
+    </main>
+    <script>
+        const outcomes = [
+            {
+                main: "Всё рухнуло.",
+                sub: "Не метафора. Кнопка. Ваша надежда. Один запрос — и тишина глубже прежней.",
+            },
+            {
+                main: "Связь оборвалась.",
+                sub: "Где-то в недрах интернета что-то щёлкнуло. Или вселенная. Разницы вы не почувствуете.",
+            },
+            {
+                main: "Не получилось.",
+                sub: "Вы нажали так решительно. Пустота ответила так же решительно.",
+            },
+            {
+                main: "Запись отклонена.",
+                sub: "Не вами. Не системой. Просто — отклонена. Как будто её и не было.",
+            },
+            {
+                main: "Момент прошёл.",
+                sub: "Окно закрылось. Не буквально — вы же всё ещё здесь. И именно в этом вся жестокость.",
+            },
+            {
+                main: "Ничего не вышло.",
+                sub: "Даже ошибка с номером не пришла. Полное, безупречное ничто.",
+            },
+        ];
+
+        const btn = document.getElementById("book");
+        const msg = document.getElementById("msg");
+        const flash = document.getElementById("flash");
+        const stage = document.getElementById("stage");
+        const btnWrap = document.getElementById("btnWrap");
+
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        btn.addEventListener("click", () => {
+            btn.disabled = true;
+            btnWrap.classList.remove("pulse");
+            btn.textContent = "Идёт попытка…";
+
+            const reveal = () => {
+                const pick = outcomes[Math.floor(Math.random() * outcomes.length)];
+                msg.replaceChildren();
+                const mainEl = document.createElement("span");
+                mainEl.className = "line-main";
+                mainEl.textContent = pick.main;
+                msg.append(mainEl);
+                const subEl = document.createElement("small");
+                subEl.textContent = pick.sub;
+                msg.append(subEl);
+                void msg.offsetWidth;
+                msg.classList.add("visible");
+                btn.textContent = "Больше не нажать";
+            };
+
+            const runDrama = () => {
+                if (!reducedMotion) {
+                    flash.classList.add("on");
+                    stage.classList.add("shake");
+                    setTimeout(() => stage.classList.remove("shake"), 520);
+                    setTimeout(() => flash.classList.remove("on"), 600);
+                }
+                reveal();
+            };
+
+            if (reducedMotion) {
+                btn.textContent = "…";
+                setTimeout(runDrama, 350);
+            } else {
+                setTimeout(() => {
+                    btn.textContent = "Ждём ответ…";
+                }, 380);
+                setTimeout(runDrama, 1100);
+            }
+        });
+    </script>
+</body>
+</html>

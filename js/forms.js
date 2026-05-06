@@ -7,6 +7,47 @@
     'use strict';
 
     // ==========================================
+    // ИНТЕГРАЦИЯ С ЯНДЕКС ФОРМАМИ
+    // ==========================================
+    //
+    // 1) Создай форму на forms.yandex.ru / forms.yandex.com (поля:
+    //    Имя, Эл. почта, Телефон, Тема, Сообщение, Согласие на ПД).
+    // 2) В админке Яндекс Форм открой "Интеграции" → "Получить ссылку"
+    //    и скопируй ID формы из URL (часть после /u/ или /cloud/).
+    // 3) В DevTools на форме Яндекса посмотри атрибуты name полей
+    //    (вида answer_short_text_NNNN) и подставь их ниже.
+    // 4) При желании отметь Captcha в настройках формы.
+    //
+    // Пока formId === '__YANDEX_FORM_ID__', сабмит будет показывать
+    // подсказку «напишите на email», а не уходить никуда.
+    // ==========================================
+
+    const YANDEX_FORM_CONFIG = {
+        formId: '__YANDEX_FORM_ID__',
+        fields: {
+            name: 'answer_short_text_REPLACE_ME',
+            email: 'answer_short_text_REPLACE_ME',
+            phone: 'answer_short_text_REPLACE_ME',
+            subject: 'answer_short_text_REPLACE_ME',
+            message: 'answer_long_text_REPLACE_ME',
+            consent: 'answer_choices_REPLACE_ME',
+            source: 'answer_short_text_REPLACE_ME'
+        }
+    };
+
+    function isYandexConfigured() {
+        if (!YANDEX_FORM_CONFIG.formId || YANDEX_FORM_CONFIG.formId === '__YANDEX_FORM_ID__') {
+            return false;
+        }
+        const fields = YANDEX_FORM_CONFIG.fields || {};
+        return Object.values(fields).every(v => v && !v.includes('REPLACE_ME'));
+    }
+
+    // Минимальная пауза между сабмитами от одного пользователя — против ботов.
+    const SUBMIT_COOLDOWN_MS = 5000;
+    let lastSubmitAt = 0;
+
+    // ==========================================
     // FORM VALIDATION
     // ==========================================
     
@@ -206,16 +247,31 @@
             const submitButton = form.querySelector('button[type="submit"]');
             const originalText = submitButton.innerHTML;
 
+            // Honeypot: скрытое поле, которое заполняют только боты.
+            const honeypot = form.querySelector('input[name="website_url"]');
+            if (honeypot && honeypot.value.trim() !== '') {
+                this.showSuccess(form, 'Спасибо! Сообщение отправлено.');
+                form.reset();
+                return;
+            }
+
+            const now = Date.now();
+            if (now - lastSubmitAt < SUBMIT_COOLDOWN_MS) {
+                this.showError(form, 'Слишком частые отправки. Пожалуйста, подождите несколько секунд.');
+                return;
+            }
+            lastSubmitAt = now;
+
             // Show loading state
             submitButton.disabled = true;
             submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Отправка...</span>';
-            
+
             // Get form data
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
-            
+
             this.sendToServer(data)
-                .then(response => {
+                .then(() => {
                     this.showSuccess(form, 'Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.');
                     form.reset();
                     document.dispatchEvent(new CustomEvent('isseya:form-submit-success', {
@@ -223,7 +279,11 @@
                     }));
                 })
                 .catch(error => {
-                    this.showError(form, 'Произошла ошибка при отправке. Пожалуйста, попробуйте позже или напишите на psychoteka@mail.ru');
+                    if (error && error.code === 'NOT_CONFIGURED') {
+                        this.showError(form, 'Форма временно недоступна. Пожалуйста, напишите на psychoteka@mail.ru — ответим в течение рабочего дня.');
+                    } else {
+                        this.showError(form, 'Произошла ошибка при отправке. Пожалуйста, попробуйте позже или напишите на psychoteka@mail.ru');
+                    }
                     console.error('Form submit error:', error);
                 })
                 .finally(() => {
@@ -231,31 +291,46 @@
                     this.updateSubmitState(form);
                 });
         },
-        
+
         sendToServer: function(data) {
-            const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyEHKtQZG6eT3C3_1nGqULAunArnQ2s63MxA1dtEJLCrIUtKM8BtoEpiLoRR909r4NZ/exec';
+            if (!isYandexConfigured()) {
+                const err = new Error('Yandex Forms not configured');
+                err.code = 'NOT_CONFIGURED';
+                return Promise.reject(err);
+            }
+
+            const fields = YANDEX_FORM_CONFIG.fields;
+            const consentAccepted = data.personal_data_consent === 'accepted';
+
             const messageWithContact = [
-                `Телефон: ${data.phone || ''}`,
-                `Эл. почта: ${data.email || ''}`,
+                'Телефон: ' + (data.phone || ''),
+                'Эл. почта: ' + (data.email || ''),
+                'Тема: ' + (data.subject || ''),
                 '',
                 data.message || ''
             ].join('\n');
 
-            const params = new URLSearchParams({
-                name: data.name || '',
-                email: data.email || '',
-                phone: data.phone || '',
-                subject: data.phone ? `${data.subject || ''} (${data.phone})` : (data.subject || ''),
-                message: messageWithContact,
-                personal_data_consent: data.personal_data_consent === 'accepted' ? 'accepted' : '',
-                consent_at: data.personal_data_consent === 'accepted' ? new Date().toISOString() : '',
-                source: window.location.href,
-                sent_at: new Date().toISOString()
-            });
+            const params = new URLSearchParams();
+            const safeAppend = (key, value) => {
+                if (key && value !== undefined && value !== null && !key.includes('REPLACE_ME')) {
+                    params.append(key, String(value));
+                }
+            };
 
-            return fetch(APPS_SCRIPT_URL, {
+            safeAppend(fields.name, data.name || '');
+            safeAppend(fields.email, data.email || '');
+            safeAppend(fields.phone, data.phone || '');
+            safeAppend(fields.subject, data.subject || '');
+            safeAppend(fields.message, messageWithContact);
+            safeAppend(fields.consent, consentAccepted ? 'Да' : 'Нет');
+            safeAppend(fields.source, window.location.href);
+
+            const url = 'https://forms.yandex.ru/cloud/' + encodeURIComponent(YANDEX_FORM_CONFIG.formId) + '/?iframe=1';
+            return fetch(url, {
                 method: 'POST',
                 mode: 'no-cors',
+                credentials: 'omit',
+                referrerPolicy: 'no-referrer',
                 body: params
             }).then(() => ({ success: true }));
         },
@@ -270,17 +345,33 @@
         
         showNotification: function(message, type) {
             const notification = document.createElement('div');
-            notification.className = `form-notification form-notification-${type}`;
-            notification.innerHTML = `
-                <div class="notification-content">
-                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
-                    <span>${message}</span>
-                </div>
-                <button class="notification-close" onclick="this.parentElement.remove()">
-                    <i class="fas fa-times"></i>
-                </button>
-            `;
-            
+            notification.className = `form-notification form-notification-${type === 'success' ? 'success' : 'error'}`;
+
+            const content = document.createElement('div');
+            content.className = 'notification-content';
+
+            const icon = document.createElement('i');
+            icon.className = `fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}`;
+            icon.setAttribute('aria-hidden', 'true');
+            content.appendChild(icon);
+
+            const text = document.createElement('span');
+            text.textContent = String(message);
+            content.appendChild(text);
+
+            const closeBtn = document.createElement('button');
+            closeBtn.type = 'button';
+            closeBtn.className = 'notification-close';
+            closeBtn.setAttribute('aria-label', 'Закрыть уведомление');
+            const closeIcon = document.createElement('i');
+            closeIcon.className = 'fas fa-times';
+            closeIcon.setAttribute('aria-hidden', 'true');
+            closeBtn.appendChild(closeIcon);
+            closeBtn.addEventListener('click', () => notification.remove());
+
+            notification.appendChild(content);
+            notification.appendChild(closeBtn);
+
             document.body.appendChild(notification);
             
             // Add styles if not already present
