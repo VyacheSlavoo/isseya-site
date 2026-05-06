@@ -6,10 +6,25 @@
 (function() {
     'use strict';
 
-    // Контактная форма теперь живёт внутри iframe Яндекс Форм
-    // (https://forms.yandex.ru/u/...). Этот модуль больше не отправляет
-    // данные сам. Остаются только валидация / форматирование на случай
-    // других локальных форм (subscribe, beta-list и т.п.).
+    // ==========================================
+    // ЯНДЕКС ФОРМЫ — отправка с собственным UI
+    // ==========================================
+    // Форма https://forms.yandex.ru/u/69fb9744f47e730896e2926d
+    // в админке имеет 3 коротких текста + 1 булев флаг.
+    // Все 6 полей сайта пакуем в эти 4 ячейки.
+    //
+    // ВАЖНО: SmartCaptcha в настройках Яндекс Формы должна быть выключена,
+    // иначе запросы из браузера блокируются (no-cors не позволяет
+    // решить капчу). Защита от ботов — на стороне сайта (honeypot и
+    // SUBMIT_COOLDOWN_MS).
+    // ==========================================
+    const YANDEX_FORM = {
+        formId: '69fb9744f47e730896e2926d',
+        fieldContact:  'answer_short_text_9008977350688840',
+        fieldSubject:  'answer_short_text_9008977350709560',
+        fieldMessage:  'answer_short_text_9008977350741356',
+        fieldConsent:  'answer_boolean_9008977350825592'
+    };
 
     // Пауза между сабмитами от одного пользователя — против ботов.
     const SUBMIT_COOLDOWN_MS = 5000;
@@ -247,11 +262,7 @@
                     }));
                 })
                 .catch(error => {
-                    if (error && error.code === 'NOT_CONFIGURED') {
-                        this.showError(form, 'Форма временно недоступна. Пожалуйста, напишите на psychoteka@mail.ru — ответим в течение рабочего дня.');
-                    } else {
-                        this.showError(form, 'Произошла ошибка при отправке. Пожалуйста, попробуйте позже или напишите на psychoteka@mail.ru');
-                    }
+                    this.showError(form, 'Произошла ошибка при отправке. Пожалуйста, попробуйте позже или напишите на psychoteka@mail.ru');
                     console.error('Form submit error:', error);
                 })
                 .finally(() => {
@@ -260,13 +271,39 @@
                 });
         },
 
-        sendToServer: function() {
-            // Контактная форма обрабатывается в iframe Яндекс Форм.
-            // Любые другие потребители sendToServer должны быть переписаны
-            // под конкретный российский бэкенд перед использованием.
-            const err = new Error('No server endpoint configured for local form submissions');
-            err.code = 'NO_BACKEND';
-            return Promise.reject(err);
+        sendToServer: function(data) {
+            const consentAccepted = data.personal_data_consent === 'accepted';
+
+            // Поле 1 — контактные данные (имя + email + телефон)
+            const contactBlock = [
+                'Имя: ' + (data.name || ''),
+                'Эл. почта: ' + (data.email || ''),
+                'Телефон: ' + (data.phone || '')
+            ].join('\n');
+
+            // Поле 2 — тема (из select). Пустой select валидатор не пропустит.
+            const subjectBlock = data.subject || '';
+
+            // Поле 3 — сообщение (truncate под 450 символов короткого текста Яндекса).
+            const rawMessage = (data.message || '').toString();
+            const messageBlock = rawMessage.length > 450
+                ? rawMessage.slice(0, 447) + '...'
+                : rawMessage;
+
+            const params = new URLSearchParams();
+            params.append(YANDEX_FORM.fieldContact, contactBlock);
+            params.append(YANDEX_FORM.fieldSubject, subjectBlock);
+            params.append(YANDEX_FORM.fieldMessage, messageBlock);
+            params.append(YANDEX_FORM.fieldConsent, consentAccepted ? 'true' : 'false');
+
+            const url = 'https://forms.yandex.ru/cloud/' + encodeURIComponent(YANDEX_FORM.formId) + '/?iframe=1';
+            return fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                credentials: 'omit',
+                referrerPolicy: 'no-referrer',
+                body: params
+            }).then(() => ({ success: true }));
         },
         
         showSuccess: function(form, message) {

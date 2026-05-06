@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://forms.yandex.ru; frame-src https://forms.yandex.ru https://yandex.ru https://*.yandex.net; child-src https://forms.yandex.ru https://yandex.ru https://*.yandex.net; base-uri 'self'; form-action 'self' https://forms.yandex.ru;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://forms.yandex.ru; base-uri 'self'; form-action 'self' https://forms.yandex.ru;">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="description" content="Свяжитесь с командой Иссея - мы всегда готовы помочь и ответить на ваши вопросы.">
     <meta name="robots" content="index, follow">
@@ -148,17 +148,65 @@
                 <div class="contact-form-premium">
                     <div class="card-premium form-card-premium">
                         <h2>Расскажите задачу — предложим решение</h2>
-                        <p class="form-privacy-note" style="margin-top: 0;">
-                            <i class="fas fa-lock" aria-hidden="true"></i>
-                            Форма отправляется через сервис «Яндекс Формы». Данные хранятся на серверах в РФ.
-                            Подробности — в <a href="privacy.html" target="_blank" rel="noopener">Политике конфиденциальности</a>.
-                        </p>
-                        <iframe
-                            class="contact-yandex-form"
-                            src="https://forms.yandex.ru/u/69fb9744f47e730896e2926d/?iframe=1"
-                            title="Контактная форма Иссеи"
-                            loading="lazy"
-                            referrerpolicy="no-referrer"></iframe>
+                        <form class="contact-form">
+                            <div class="form-group-premium">
+                                <label for="name">Имя</label>
+                                <input type="text" id="name" name="name" maxlength="120" required>
+                            </div>
+
+                            <div class="form-group-premium">
+                                <label for="email">Эл. почта</label>
+                                <input type="email" id="email" name="email" maxlength="120" required>
+                            </div>
+
+                            <div class="form-group-premium">
+                                <label for="phone">Телефон</label>
+                                <input type="tel" id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" maxlength="20" required>
+                            </div>
+
+                            <div class="form-group-premium">
+                                <label for="subject">Тема</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Выберите тему</option>
+                                    <option value="Общий вопрос">Общий вопрос</option>
+                                    <option value="Для бизнеса">Для бизнеса</option>
+                                    <option value="Техподдержка">Техподдержка</option>
+                                    <option value="Партнёрство">Партнёрство</option>
+                                    <option value="Закрытое тестирование">Участие в закрытом тестировании</option>
+                                    <option value="Другое">Другое</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-premium">
+                                <label for="message">Сообщение</label>
+                                <textarea id="message" name="message" rows="6" maxlength="450" required></textarea>
+                            </div>
+
+                            <label class="form-consent">
+                                <input type="checkbox" id="personal-data-consent" name="personal_data_consent" value="accepted" required>
+                                <span>
+                                    Я даю согласие ООО «ПСИХОТЕКА» (ИНН 7801745600) на обработку моих персональных данных
+                                    для ответа на обращение и согласен(на) с тем, что данные передаются обработчику —
+                                    ООО «ЯНДЕКС» (сервис «Яндекс Формы», серверы в РФ). Подробности — в
+                                    <a href="privacy.html" target="_blank" rel="noopener">Политике конфиденциальности</a>.
+                                </span>
+                            </label>
+
+                            <!-- honeypot против спам-ботов: реальные люди это поле не видят -->
+                            <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
+                                <label for="website_url">Не заполняйте это поле</label>
+                                <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off">
+                            </div>
+
+                            <button type="submit" class="btn-premium btn-primary form-submit-btn">
+                                <span>Отправить сообщение</span>
+                                <span class="btn-arrow" aria-hidden="true">→</span>
+                            </button>
+                            <p class="form-privacy-note">
+                                <i class="fas fa-lock" aria-hidden="true"></i>
+                                Данные отправляются в «Яндекс Формы» (сервис на серверах в РФ). Ответим на указанную почту или телефон.
+                            </p>
+                        </form>
                     </div>
                 </div>
             </div>
