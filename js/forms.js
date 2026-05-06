@@ -7,24 +7,33 @@
     'use strict';
 
     // ==========================================
-    // ЯНДЕКС ФОРМЫ — отправка с собственным UI
+    // BITRIX24 — приёмник заявок
     // ==========================================
-    // Форма https://forms.yandex.ru/u/69fb9744f47e730896e2926d
-    // в админке имеет 3 коротких текста + 1 булев флаг.
-    // Все 6 полей сайта пакуем в эти 4 ячейки.
+    // Bitrix24 — российский CRM, серверы и данные в РФ. Подключаем форму
+    // через входящий вебхук:
     //
-    // ВАЖНО: SmartCaptcha в настройках Яндекс Формы должна быть выключена,
-    // иначе запросы из браузера блокируются (no-cors не позволяет
-    // решить капчу). Защита от ботов — на стороне сайта (honeypot и
-    // SUBMIT_COOLDOWN_MS).
+    //   1. Зарегистрируй портал на bitrix24.ru (бесплатно).
+    //   2. Левое меню → Разработчикам → Другое → Входящие вебхуки.
+    //   3. Добавь вебхук с правом «CRM (crm)».
+    //   4. Скопируй URL вида
+    //      https://<portal>.bitrix24.ru/rest/<id>/<token>/
+    //   5. Подставь его сюда вместо '__BITRIX_WEBHOOK_URL__'.
+    //
+    // Пока URL не подставлен, форма падает на mailto-фолбек:
+    // открывается почтовый клиент пользователя с уже заполненным
+    // письмом на psychoteka@mail.ru, плюс копия текста ложится
+    // в буфер обмена (на случай, если клиент не настроен).
     // ==========================================
-    const YANDEX_FORM = {
-        formId: '69fb9744f47e730896e2926d',
-        fieldContact:  'answer_short_text_9008977350688840',
-        fieldSubject:  'answer_short_text_9008977350709560',
-        fieldMessage:  'answer_short_text_9008977350741356',
-        fieldConsent:  'answer_boolean_9008977350825592'
-    };
+    const BITRIX_WEBHOOK_URL = '__BITRIX_WEBHOOK_URL__';
+
+    function isBitrixConfigured() {
+        return typeof BITRIX_WEBHOOK_URL === 'string'
+            && BITRIX_WEBHOOK_URL.startsWith('https://')
+            && BITRIX_WEBHOOK_URL.includes('bitrix24')
+            && !BITRIX_WEBHOOK_URL.includes('__BITRIX_WEBHOOK_URL__');
+    }
+
+    const FALLBACK_EMAIL = 'psychoteka@mail.ru';
 
     // Пауза между сабмитами от одного пользователя — против ботов.
     const SUBMIT_COOLDOWN_MS = 5000;
@@ -254,8 +263,12 @@
             const data = Object.fromEntries(formData.entries());
 
             this.sendToServer(data)
-                .then(() => {
-                    this.showSuccess(form, 'Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.');
+                .then(result => {
+                    let successMessage = 'Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.';
+                    if (result && result.channel === 'mailto') {
+                        successMessage = 'Открылся ваш почтовый клиент с готовым письмом — отправьте его, и мы получим обращение. Если клиент не открылся, текст уже скопирован — вставьте его в письмо на ' + FALLBACK_EMAIL + '.';
+                    }
+                    this.showSuccess(form, successMessage);
                     form.reset();
                     document.dispatchEvent(new CustomEvent('isseya:form-submit-success', {
                         detail: { formName: 'contact_form' }
@@ -272,38 +285,89 @@
         },
 
         sendToServer: function(data) {
+            if (isBitrixConfigured()) {
+                return this.sendToBitrix(data);
+            }
+            return this.sendViaMailto(data);
+        },
+
+        sendToBitrix: function(data) {
             const consentAccepted = data.personal_data_consent === 'accepted';
 
-            // Поле 1 — контактные данные (имя + email + телефон)
-            const contactBlock = [
-                'Имя: ' + (data.name || ''),
-                'Эл. почта: ' + (data.email || ''),
-                'Телефон: ' + (data.phone || '')
-            ].join('\n');
-
-            // Поле 2 — тема (из select). Пустой select валидатор не пропустит.
-            const subjectBlock = data.subject || '';
-
-            // Поле 3 — сообщение (truncate под 450 символов короткого текста Яндекса).
-            const rawMessage = (data.message || '').toString();
-            const messageBlock = rawMessage.length > 450
-                ? rawMessage.slice(0, 447) + '...'
-                : rawMessage;
-
+            // form-encoded body — без CORS preflight, никаких кастомных заголовков
             const params = new URLSearchParams();
-            params.append(YANDEX_FORM.fieldContact, contactBlock);
-            params.append(YANDEX_FORM.fieldSubject, subjectBlock);
-            params.append(YANDEX_FORM.fieldMessage, messageBlock);
-            params.append(YANDEX_FORM.fieldConsent, consentAccepted ? 'true' : 'false');
+            const subject = (data.subject || 'Обращение').toString();
+            params.append('fields[TITLE]', 'Сайт: ' + subject);
+            params.append('fields[NAME]', (data.name || '').toString());
+            params.append('fields[EMAIL][0][VALUE]', (data.email || '').toString());
+            params.append('fields[EMAIL][0][VALUE_TYPE]', 'WORK');
+            params.append('fields[PHONE][0][VALUE]', (data.phone || '').toString());
+            params.append('fields[PHONE][0][VALUE_TYPE]', 'WORK');
+            const commentLines = [
+                'Тема: ' + subject,
+                'Согласие на обработку ПД: ' + (consentAccepted ? 'да' : 'нет'),
+                'Источник: ' + window.location.href,
+                '',
+                (data.message || '').toString()
+            ];
+            params.append('fields[COMMENTS]', commentLines.join('\n'));
+            params.append('fields[SOURCE_ID]', 'WEB');
+            params.append('fields[SOURCE_DESCRIPTION]', window.location.href);
 
-            const url = 'https://forms.yandex.ru/cloud/' + encodeURIComponent(YANDEX_FORM.formId) + '/?iframe=1';
+            const trimmedUrl = BITRIX_WEBHOOK_URL.replace(/\/+$/, '/');
+            const url = trimmedUrl + 'crm.lead.add.json';
+
             return fetch(url, {
                 method: 'POST',
-                mode: 'no-cors',
+                mode: 'cors',
                 credentials: 'omit',
                 referrerPolicy: 'no-referrer',
                 body: params
-            }).then(() => ({ success: true }));
+            }).then(function(resp) {
+                if (!resp.ok) {
+                    throw new Error('Bitrix24 HTTP ' + resp.status);
+                }
+                return resp.json();
+            }).then(function(json) {
+                if (json && json.error) {
+                    throw new Error('Bitrix24: ' + (json.error_description || json.error));
+                }
+                return { success: true, leadId: json && json.result };
+            });
+        },
+
+        sendViaMailto: function(data) {
+            const consentAccepted = data.personal_data_consent === 'accepted';
+            const subject = (data.subject || 'Обращение с сайта').toString();
+            const body = [
+                'Имя: ' + (data.name || ''),
+                'Эл. почта: ' + (data.email || ''),
+                'Телефон: ' + (data.phone || ''),
+                'Тема: ' + subject,
+                'Согласие на обработку ПД: ' + (consentAccepted ? 'да' : 'нет'),
+                '',
+                (data.message || '').toString()
+            ].join('\n');
+
+            // Кладём текст в буфер обмена — на случай, если почтовый
+            // клиент не настроен и пользователю нужно вставить вручную.
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(body).catch(function() {});
+            }
+
+            const mailto = 'mailto:' + FALLBACK_EMAIL
+                + '?subject=' + encodeURIComponent('[Сайт] ' + subject)
+                + '&body=' + encodeURIComponent(body);
+            // Используем временную ссылку, чтобы не менять scroll/history.
+            const a = document.createElement('a');
+            a.href = mailto;
+            a.rel = 'noopener noreferrer';
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            return Promise.resolve({ success: true, channel: 'mailto' });
         },
         
         showSuccess: function(form, message) {

@@ -1,8 +1,14 @@
-// Service Worker for Иссея
-// Basic caching strategy for offline support
+// Service Worker для Иссеи.
+// Стратегии:
+//  - HTML-документы: network-first (всегда свежее, при оффлайне — кэш).
+//  - Свои JS/CSS/шрифты: stale-while-revalidate (моментально из кэша,
+//    в фоне обновляется — деплои подхватываются на следующей загрузке).
+//  - Другие GET (картинки, sw, manifest и т.п.): cache-first.
+// Почему: предыдущие версии держали JS/CSS как cache-first и фиксировали
+// устаревший код у пользователей. Теперь обновления доезжают всегда.
 
-const CACHE_NAME = 'isseya-v7';
-const CACHE_URLS = [
+const CACHE_NAME = 'isseya-v9';
+const PRECACHE_URLS = [
     './',
     './css/premium.css',
     './css/pages/home.css',
@@ -17,81 +23,97 @@ const CACHE_URLS = [
     './pages/terms.html'
 ];
 
-// Install - Cache resources
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then((cache) => {
-                return cache.addAll(CACHE_URLS);
-            })
-            .catch((err) => {
-                console.log('Cache install failed:', err);
-            })
+            .then((cache) => cache.addAll(PRECACHE_URLS))
+            .catch((err) => console.warn('SW precache failed:', err))
     );
     self.skipWaiting();
 });
 
-// Activate - Clean old caches
 self.addEventListener('activate', (event) => {
     event.waitUntil(
-        caches.keys().then((cacheNames) => {
-            return Promise.all(
-                cacheNames.map((cacheName) => {
-                    if (cacheName !== CACHE_NAME) {
-                        return caches.delete(cacheName);
-                    }
-                })
-            );
-        })
+        caches.keys()
+            .then((names) => Promise.all(
+                names.filter((n) => n !== CACHE_NAME).map((n) => caches.delete(n))
+            ))
+            .then(() => self.clients.claim())
     );
-    return self.clients.claim();
 });
 
-// Fetch - Serve from cache, fallback to network
+self.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'SKIP_WAITING') {
+        self.skipWaiting();
+    }
+});
+
+function isSameOrigin(url) {
+    try {
+        return new URL(url, self.location.href).origin === self.location.origin;
+    } catch (e) {
+        return false;
+    }
+}
+
+function isStaleWhileRevalidateTarget(url) {
+    return /\.(?:js|css)$/i.test(url) || /\/fonts\/.*\.(?:woff2?|ttf|otf)$/i.test(url);
+}
+
 self.addEventListener('fetch', (event) => {
-    // Skip non-GET requests
-    if (event.request.method !== 'GET') {
+    const request = event.request;
+
+    if (request.method !== 'GET') {
+        return;
+    }
+    if (!isSameOrigin(request.url)) {
         return;
     }
 
-    // Skip external resources
-    if (!event.request.url.startsWith(self.location.origin)) {
-        return;
-    }
-
-    if (event.request.mode === 'navigate' || event.request.destination === 'document') {
+    // 1) Документы: network-first.
+    if (request.mode === 'navigate' || request.destination === 'document') {
         event.respondWith(
-            fetch(event.request)
+            fetch(request)
                 .then((response) => {
                     if (response && response.status === 200 && response.type === 'basic') {
-                        const responseToCache = response.clone();
-                        caches.open(CACHE_NAME).then((cache) => {
-                            cache.put(event.request, responseToCache);
-                        });
+                        const copy = response.clone();
+                        caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
                     }
-
                     return response;
                 })
-                .catch(() => caches.match(event.request).then((response) => response || caches.match('./')))
+                .catch(() => caches.match(request).then((r) => r || caches.match('./')))
         );
         return;
     }
 
+    // 2) Свои JS/CSS/шрифты: stale-while-revalidate.
+    if (isStaleWhileRevalidateTarget(request.url)) {
+        event.respondWith(
+            caches.open(CACHE_NAME).then((cache) =>
+                cache.match(request).then((cached) => {
+                    const networkFetch = fetch(request)
+                        .then((response) => {
+                            if (response && response.status === 200 && response.type === 'basic') {
+                                cache.put(request, response.clone());
+                            }
+                            return response;
+                        })
+                        .catch(() => cached);
+                    return cached || networkFetch;
+                })
+            )
+        );
+        return;
+    }
+
+    // 3) Остальное (картинки, manifest и т.п.): cache-first c обновлением фоном.
     event.respondWith(
-        caches.match(event.request)
-            .then((response) => response || fetch(event.request).then((response) => {
-                // Don't cache non-successful responses
-                if (!response || response.status !== 200 || response.type !== 'basic') {
-                    return response;
-                }
-
-                const responseToCache = response.clone();
-                caches.open(CACHE_NAME).then((cache) => {
-                    cache.put(event.request, responseToCache);
-                });
-
-                return response;
-            }))
+        caches.match(request).then((cached) => cached || fetch(request).then((response) => {
+            if (response && response.status === 200 && response.type === 'basic') {
+                const copy = response.clone();
+                caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+            }
+            return response;
+        }))
     );
 });
-
