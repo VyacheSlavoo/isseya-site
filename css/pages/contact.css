@@ -172,30 +172,38 @@
     font-size: 1rem !important;
 }
 
+/* Иконка + текст в grid: весь абзац со ссылкой — один inline-поток (flex ломал «…в [ссылка]»). */
 .form-privacy-note {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: auto 1fr;
     gap: var(--space-2);
+    align-items: start;
     margin-top: var(--space-4);
     font-size: 0.8rem;
     color: var(--neutral-500);
-    line-height: 1.5;
+    line-height: 1.55;
 }
 
-.form-privacy-note i {
+.form-privacy-note__icon {
     color: var(--primary-500);
-    flex-shrink: 0;
     font-size: 0.75rem;
+    line-height: inherit;
+    padding-top: 0.12em;
 }
 
-.form-privacy-note a {
+.form-privacy-note__text {
+    min-width: 0;
+}
+
+.form-privacy-note__text a {
     color: var(--primary-600);
     text-decoration: none;
     font-weight: var(--font-medium);
     border-bottom: 1px solid rgba(122, 149, 224, 0.4);
+    white-space: normal;
 }
 
-.form-privacy-note a:hover {
+.form-privacy-note__text a:hover {
     color: var(--primary-800);
 }
 
