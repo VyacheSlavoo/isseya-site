@@ -3,6 +3,12 @@
    Brings internal pages to the same visual rhythm as home
    ========================================== */
 
+/* Главный контент внутренних страниц всегда виден: premium.js ставит section-premium в opacity:0 до IO — на телефоне callback иногда не приходит. */
+body.inner-page .section-premium {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
 .inner-page .page-hero-premium {
     padding-top: calc(140px + var(--space-10));
     padding-bottom: var(--space-16);

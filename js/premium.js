@@ -88,6 +88,9 @@
 
     function initSectionReveal() {
         if (prefersReducedMotion()) return;
+        /* Внутренние страницы: не вешаем section-reveal — ниже по файлу им ставится inline opacity:0,
+           и без срабатывания IntersectionObserver контент остаётся невидимым (часто на iOS). */
+        if (document.body.classList.contains('inner-page')) return;
 
         const sections = document.querySelectorAll('.section-premium');
         if (sections.length === 0 || !('IntersectionObserver' in window)) return;
@@ -531,7 +534,7 @@
     // SMOOTH REVEAL ON SCROLL (Only if no AOS)
     // ==========================================
     // Don't hide sections if AOS is being used - it conflicts with AOS animations
-    if (typeof AOS === 'undefined') {
+    if (typeof AOS === 'undefined' && !document.body.classList.contains('inner-page')) {
         const sections = document.querySelectorAll('.section-premium:not([data-aos])');
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
