@@ -101,6 +101,54 @@
     padding: var(--space-12) 0;
 }
 
+/* Юридические документы: карточка должна быть видна на iOS (без «стеклянного» бага и обрезки). */
+.inner-page .card-premium.legal-document-card {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: visible !important;
+}
+
+@media (max-width: 1024px) {
+    .inner-page .card-premium.legal-document-card {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: #fff;
+        background-image: linear-gradient(180deg, #ffffff 0%, #f9f7ff 100%);
+    }
+
+    .inner-page .card-premium.legal-document-card::before {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .inner-page .card-premium:has(.legal-content),
+    .inner-page .card-premium.legal-document-card {
+        padding: var(--space-6) var(--space-4) !important;
+    }
+
+    .inner-page .section-premium .container-premium:has(.legal-document-card) {
+        padding-left: max(var(--space-4), env(safe-area-inset-left, 0px));
+        padding-right: max(var(--space-4), env(safe-area-inset-right, 0px));
+    }
+}
+
+@media (max-width: 480px) {
+    .inner-page .card-premium.legal-document-card {
+        padding: var(--space-5) var(--space-3) !important;
+        border-radius: var(--radius-xl);
+    }
+
+    .inner-page .legal-document-card .legal-content h2 {
+        font-size: clamp(1.15rem, 5.5vw, 1.45rem);
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+}
+
 .inner-page .section-header-premium {
     text-align: left;
     max-width: 820px;
@@ -222,9 +270,6 @@
 }
 
 @media (max-width: 768px) {
-    .inner-page .card-premium:has(.legal-content) {
-        padding: var(--space-6) var(--space-4) !important;
-    }
     .inner-page .cta-card-premium,
     .cta-card-premium {
         padding: var(--space-8) var(--space-4) !important;

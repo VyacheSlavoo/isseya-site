@@ -25,7 +25,13 @@
             animation-iteration-count: 1 !important;
             transition: none !important;
         }
-        .premium-bg, .mesh-gradient, .orb, .noise-overlay {
+        /* Весь фиксированный слой убираем: на iOS он иногда мешает наложению контента. */
+        .premium-bg {
+            display: none !important;
+        }
+        .premium-bg .mesh-gradient,
+        .premium-bg .orb,
+        .premium-bg .noise-overlay {
             display: none !important;
         }
         body.inner-page {
@@ -102,7 +108,7 @@
 
     <section class="section-premium">
         <div class="container-premium">
-            <div class="card-premium" style="max-width: 900px; margin: 0 auto;">
+            <div class="card-premium legal-document-card">
                 <div class="legal-content">
                     
                     <h2>1. Общие положения</h2>
@@ -390,11 +396,12 @@
             margin-bottom: var(--space-2);
         }
         .legal-content a {
-            color: #e5d4fa;
+            color: var(--primary-700, #4a5a9a);
             text-decoration: underline;
+            text-underline-offset: 2px;
         }
         .legal-content a:hover {
-            color: #ffe0e1;
+            color: var(--primary-900, #2f3a6b);
         }
         .legal-content strong {
             color: var(--text-primary);
