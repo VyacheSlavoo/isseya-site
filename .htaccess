@@ -20,7 +20,7 @@ Options -Indexes
     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
     
     # Content Security Policy
-    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-src https://forms.yandex.ru https://yandex.ru https://*.yandex.net; child-src https://forms.yandex.ru https://yandex.ru https://*.yandex.net; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
     
     # XSS Protection
     Header always set X-XSS-Protection "1; mode=block"

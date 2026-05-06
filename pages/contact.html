@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-src https://forms.yandex.ru https://yandex.ru https://*.yandex.net; child-src https://forms.yandex.ru https://yandex.ru https://*.yandex.net; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com; base-uri 'self'; form-action 'self';">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="description" content="Свяжитесь с командой Иссея - мы всегда готовы помочь и ответить на ваши вопросы.">
     <meta name="robots" content="index, follow">
@@ -158,22 +158,80 @@
 
                         <ul class="form-card-bullets">
                             <li><i class="fas fa-check-circle" aria-hidden="true"></i> Ответ от живого человека, не автобот</li>
-                            <li><i class="fas fa-shield-halved" aria-hidden="true"></i> Данные хранятся в РФ, у Яндекса (152-ФЗ)</li>
-                            <li><i class="fas fa-clock" aria-hidden="true"></i> Среднее время ответа — менее 24 часов</li>
+                            <li><i class="fas fa-shield-halved" aria-hidden="true"></i> Два явных согласия: обработка ПДн и трансграничная передача (ст. 12 152-ФЗ)</li>
+                            <li><i class="fas fa-table" aria-hidden="true"></i> Заявка фиксируется в Google Таблице (Google LLC, США) — только после ваших галочек</li>
                         </ul>
 
-                        <iframe
-                            class="contact-yandex-form"
-                            src="https://forms.yandex.ru/u/69fb9744f47e730896e2926d/?iframe=1"
-                            title="Контактная форма Иссеи"
-                            loading="lazy"
-                            referrerpolicy="no-referrer"></iframe>
+                        <form class="contact-form">
+                            <div class="form-group-premium">
+                                <label for="name">Имя</label>
+                                <input type="text" id="name" name="name" maxlength="120" required>
+                            </div>
 
-                        <p class="form-privacy-note">
-                            <i class="fas fa-lock" aria-hidden="true"></i>
-                            Форма работает на сервисе «Яндекс Формы» (ООО «ЯНДЕКС», серверы в РФ).
-                            Подробнее — в <a href="privacy.html" target="_blank" rel="noopener">Политике конфиденциальности</a>.
-                        </p>
+                            <div class="form-group-premium">
+                                <label for="email">Эл. почта</label>
+                                <input type="email" id="email" name="email" maxlength="120" required>
+                            </div>
+
+                            <div class="form-group-premium">
+                                <label for="phone">Телефон</label>
+                                <input type="tel" id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" maxlength="20" required>
+                            </div>
+
+                            <div class="form-group-premium">
+                                <label for="subject">Тема</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Выберите тему</option>
+                                    <option value="Общий вопрос">Общий вопрос</option>
+                                    <option value="Для бизнеса">Для бизнеса</option>
+                                    <option value="Техподдержка">Техподдержка</option>
+                                    <option value="Партнёрство">Партнёрство</option>
+                                    <option value="Закрытое тестирование">Участие в закрытом тестировании</option>
+                                    <option value="Другое">Другое</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-premium">
+                                <label for="message">Сообщение</label>
+                                <textarea id="message" name="message" rows="6" maxlength="450" required></textarea>
+                            </div>
+
+                            <label class="form-consent">
+                                <input type="checkbox" id="personal-data-consent" name="personal_data_consent" value="accepted" required>
+                                <span>
+                                    Я даю согласие ООО «ПСИХОТЕКА» (ИНН 7801745600) на обработку моих персональных данных
+                                    (в т.ч. имя, контактные данные, тема и текст обращения) в целях рассмотрения обращения и связи со мной.
+                                    Подробности — в
+                                    <a href="privacy.html" target="_blank" rel="noopener">Политике конфиденциальности</a>.
+                                </span>
+                            </label>
+
+                            <label class="form-consent">
+                                <input type="checkbox" id="cross-border-consent" name="cross_border_transfer_consent" value="accepted" required>
+                                <span>
+                                    Я даю отдельное согласие на трансграничную передачу этих персональных данных получателю
+                                    <strong>Google LLC</strong> (США) для приёма и учёта обращения в <strong>Google Таблице</strong>
+                                    с использованием <strong>Google Apps Script</strong>. Мне известно, что указанное иностранное государство
+                                    может не обеспечивать уровень защиты персональных данных, адекватный требованиям 152-ФЗ, и я принимаю этот риск.
+                                    Условия обработки у получателя изложены в Политике; копию договорённостей можно запросить у оператора.
+                                </span>
+                            </label>
+
+                            <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
+                                <label for="website_url">Не заполняйте это поле</label>
+                                <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off">
+                            </div>
+
+                            <button type="submit" class="btn-premium btn-primary form-submit-btn">
+                                <span>Отправить сообщение</span>
+                                <span class="btn-arrow" aria-hidden="true">→</span>
+                            </button>
+                            <p class="form-privacy-note">
+                                <i class="fas fa-lock" aria-hidden="true"></i>
+                                Отправка идёт на защищённый endpoint Google Apps Script; без двух галочек форма не уйдёт.
+                                Подробности о трансграничной передаче — в <a href="privacy.html" target="_blank" rel="noopener">Политике</a>.
+                            </p>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -271,16 +329,18 @@
     </button>
 
     <script>
-        // Pre-select subject from URL (e.g. ?subject=beta for closed testing)
         (function() {
             var params = new URLSearchParams(window.location.search);
             var subject = params.get('subject');
-            if (subject) {
-                var select = document.getElementById('subject');
-                if (select) {
-                    var option = select.querySelector('option[value="' + subject + '"]');
-                    if (option) { select.value = subject; }
-                }
+            if (!subject) return;
+            if (subject === 'beta') {
+                subject = 'Закрытое тестирование';
+            }
+            var select = document.getElementById('subject');
+            if (!select) return;
+            var option = select.querySelector('option[value="' + subject + '"]');
+            if (option) {
+                select.value = subject;
             }
         })();
     </script>

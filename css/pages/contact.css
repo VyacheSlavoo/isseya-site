@@ -11,9 +11,11 @@
     padding: var(--space-20) 0;
 }
 
-/* Card-обёртка вокруг встроенной Яндекс Формы. Сама форма — iframe, мы
-   подаём её внутри нашего «премиум»-кадра, чтобы визуально она читалась
-   как часть сайта, а не как чужой элемент. */
+/* Шапка карточки и список преимуществ над собственной формой. */
+.contact-form {
+    position: relative;
+}
+
 .form-card-premium .form-card-header {
     margin-bottom: var(--space-6);
 }
@@ -54,24 +56,8 @@
     text-align: center;
 }
 
-.contact-yandex-form {
-    display: block;
-    width: 100%;
-    min-height: 720px;
-    border: 0;
-    border-radius: var(--radius-2xl, 18px);
-    background: #fff;
-    box-shadow: 0 1px 0 rgba(63, 70, 106, 0.06) inset, 0 8px 28px rgba(63, 70, 106, 0.08);
-}
-
-@media (max-width: 768px) {
-    .contact-yandex-form {
-        min-height: 820px;
-        border-radius: var(--radius-xl, 14px);
-    }
-    .form-card-bullets {
-        margin-bottom: var(--space-5);
-    }
+.form-consent + .form-consent {
+    margin-top: var(--space-4);
 }
 
 .contact-grid-premium {

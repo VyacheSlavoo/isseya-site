@@ -7,7 +7,7 @@
 // Почему: предыдущие версии держали JS/CSS как cache-first и фиксировали
 // устаревший код у пользователей. Теперь обновления доезжают всегда.
 
-const CACHE_NAME = 'isseya-v9';
+const CACHE_NAME = 'isseya-v10';
 const PRECACHE_URLS = [
     './',
     './css/premium.css',
