@@ -207,11 +207,17 @@
 
             this.sendToServer(data)
                 .then(() => {
-                    this.showSuccess(form, 'Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.');
-                    form.reset();
-                    document.dispatchEvent(new CustomEvent('isseya:form-submit-success', {
-                        detail: { formName: 'contact_form' }
-                    }));
+                    try {
+                        this.showSuccess(form, 'Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.');
+                        form.reset();
+                        document.dispatchEvent(new CustomEvent('isseya:form-submit-success', {
+                            detail: { formName: 'contact_form' }
+                        }));
+                    } catch (uiErr) {
+                        console.error('Post-submit UI error:', uiErr);
+                        form.reset();
+                        this.showSuccess(form, 'Сообщение принято. Спасибо!');
+                    }
                 })
                 .catch(error => {
                     this.showError(form, 'Произошла ошибка при отправке. Пожалуйста, попробуйте позже или напишите на psychoteka@mail.ru');
