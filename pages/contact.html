@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://forms.yandex.ru; base-uri 'self'; form-action 'self' https://forms.yandex.ru;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://forms.yandex.ru; frame-src https://forms.yandex.ru https://yandex.ru https://*.yandex.net; child-src https://forms.yandex.ru https://yandex.ru https://*.yandex.net; base-uri 'self'; form-action 'self' https://forms.yandex.ru;">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="description" content="Свяжитесь с командой Иссея - мы всегда готовы помочь и ответить на ваши вопросы.">
     <meta name="robots" content="index, follow">
@@ -19,11 +19,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous" referrerpolicy="no-referrer">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
     
-    <link rel="preload" href="../css/premium.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="../css/premium.css"></noscript>
-    
-    <link rel="preload" href="../css/pages/contact.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="../css/pages/contact.css"></noscript>
+    <link rel="stylesheet" href="../css/premium.css">
+    <link rel="stylesheet" href="../css/pages/contact.css">
+    <link rel="stylesheet" href="../css/pages/unified-template.css">
 
     <script type="application/ld+json">
     {
@@ -45,7 +43,6 @@
         ]
     }
     </script>
-    <link rel="stylesheet" href="../css/pages/unified-template.css">
 </head>
 <body class="inner-page">
     
@@ -148,68 +145,20 @@
                     </div>
                 </div>
                 
-                <div class="contact-form-premium" data-aos="fade-left">
+                <div class="contact-form-premium">
                     <div class="card-premium form-card-premium">
                         <h2>Расскажите задачу — предложим решение</h2>
-                        <form class="contact-form">
-                            <div class="form-group-premium">
-                                <label for="name">Имя</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                            
-                            <div class="form-group-premium">
-                                <label for="email">Эл. почта</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-
-                            <div class="form-group-premium">
-                                <label for="phone">Телефон</label>
-                                <input type="tel" id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required>
-                            </div>
-                            
-                            <div class="form-group-premium">
-                                <label for="subject">Тема</label>
-                                <select id="subject" name="subject" required>
-                                    <option value="">Выберите тему</option>
-                                    <option value="general">Общий вопрос</option>
-                                    <option value="business">Для бизнеса</option>
-                                    <option value="support">Техподдержка</option>
-                                    <option value="partnership">Партнёрство</option>
-                                    <option value="beta">Участие в закрытом тестировании</option>
-                                    <option value="other">Другое</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group-premium">
-                                <label for="message">Сообщение</label>
-                                <textarea id="message" name="message" rows="6" required></textarea>
-                            </div>
-
-                            <label class="form-consent">
-                                <input type="checkbox" id="personal-data-consent" name="personal_data_consent" value="accepted" required>
-                                <span>
-                                    Я даю согласие ООО «ПСИХОТЕКА» (ИНН 7801745600) на обработку моих персональных данных
-                                    для ответа на обращение и согласен(на) с тем, что данные передаются обработчику —
-                                    ООО «ЯНДЕКС» (сервис «Яндекс Формы», серверы в РФ). Подробности — в
-                                    <a href="privacy.html" target="_blank" rel="noopener">Политике конфиденциальности</a>.
-                                </span>
-                            </label>
-
-                            <!-- honeypot против спам-ботов: реальные люди это поле не видят -->
-                            <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
-                                <label for="website_url">Не заполняйте это поле</label>
-                                <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off">
-                            </div>
-                            
-                            <button type="submit" class="btn-premium btn-primary form-submit-btn">
-                                <span>Отправить сообщение</span>
-                                <span class="btn-arrow" aria-hidden="true">→</span>
-                            </button>
-                            <p class="form-privacy-note">
-                                <i class="fas fa-lock" aria-hidden="true"></i>
-                                Данные используются только для обработки обращения. Ответим на указанную почту или телефон.
-                            </p>
-                        </form>
+                        <p class="form-privacy-note" style="margin-top: 0;">
+                            <i class="fas fa-lock" aria-hidden="true"></i>
+                            Форма отправляется через сервис «Яндекс Формы». Данные хранятся на серверах в РФ.
+                            Подробности — в <a href="privacy.html" target="_blank" rel="noopener">Политике конфиденциальности</a>.
+                        </p>
+                        <iframe
+                            class="contact-yandex-form"
+                            src="https://forms.yandex.ru/u/69fb9744f47e730896e2926d/?iframe=1"
+                            title="Контактная форма Иссеи"
+                            loading="lazy"
+                            referrerpolicy="no-referrer"></iframe>
                     </div>
                 </div>
             </div>

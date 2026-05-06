@@ -11,6 +11,23 @@
     padding: var(--space-20) 0;
 }
 
+/* Yandex Forms iframe — встраивается через <iframe class="contact-yandex-form"> */
+.contact-yandex-form {
+    display: block;
+    width: 100%;
+    min-height: 720px;
+    border: 0;
+    border-radius: var(--radius-2xl, 16px);
+    background: #fff;
+    margin-top: var(--space-6);
+}
+
+@media (max-width: 768px) {
+    .contact-yandex-form {
+        min-height: 820px;
+    }
+}
+
 .contact-grid-premium {
     display: grid;
     grid-template-columns: 1fr 1.6fr;

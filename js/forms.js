@@ -6,44 +6,12 @@
 (function() {
     'use strict';
 
-    // ==========================================
-    // ИНТЕГРАЦИЯ С ЯНДЕКС ФОРМАМИ
-    // ==========================================
-    //
-    // 1) Создай форму на forms.yandex.ru / forms.yandex.com (поля:
-    //    Имя, Эл. почта, Телефон, Тема, Сообщение, Согласие на ПД).
-    // 2) В админке Яндекс Форм открой "Интеграции" → "Получить ссылку"
-    //    и скопируй ID формы из URL (часть после /u/ или /cloud/).
-    // 3) В DevTools на форме Яндекса посмотри атрибуты name полей
-    //    (вида answer_short_text_NNNN) и подставь их ниже.
-    // 4) При желании отметь Captcha в настройках формы.
-    //
-    // Пока formId === '__YANDEX_FORM_ID__', сабмит будет показывать
-    // подсказку «напишите на email», а не уходить никуда.
-    // ==========================================
+    // Контактная форма теперь живёт внутри iframe Яндекс Форм
+    // (https://forms.yandex.ru/u/...). Этот модуль больше не отправляет
+    // данные сам. Остаются только валидация / форматирование на случай
+    // других локальных форм (subscribe, beta-list и т.п.).
 
-    const YANDEX_FORM_CONFIG = {
-        formId: '__YANDEX_FORM_ID__',
-        fields: {
-            name: 'answer_short_text_REPLACE_ME',
-            email: 'answer_short_text_REPLACE_ME',
-            phone: 'answer_short_text_REPLACE_ME',
-            subject: 'answer_short_text_REPLACE_ME',
-            message: 'answer_long_text_REPLACE_ME',
-            consent: 'answer_choices_REPLACE_ME',
-            source: 'answer_short_text_REPLACE_ME'
-        }
-    };
-
-    function isYandexConfigured() {
-        if (!YANDEX_FORM_CONFIG.formId || YANDEX_FORM_CONFIG.formId === '__YANDEX_FORM_ID__') {
-            return false;
-        }
-        const fields = YANDEX_FORM_CONFIG.fields || {};
-        return Object.values(fields).every(v => v && !v.includes('REPLACE_ME'));
-    }
-
-    // Минимальная пауза между сабмитами от одного пользователя — против ботов.
+    // Пауза между сабмитами от одного пользователя — против ботов.
     const SUBMIT_COOLDOWN_MS = 5000;
     let lastSubmitAt = 0;
 
@@ -292,47 +260,13 @@
                 });
         },
 
-        sendToServer: function(data) {
-            if (!isYandexConfigured()) {
-                const err = new Error('Yandex Forms not configured');
-                err.code = 'NOT_CONFIGURED';
-                return Promise.reject(err);
-            }
-
-            const fields = YANDEX_FORM_CONFIG.fields;
-            const consentAccepted = data.personal_data_consent === 'accepted';
-
-            const messageWithContact = [
-                'Телефон: ' + (data.phone || ''),
-                'Эл. почта: ' + (data.email || ''),
-                'Тема: ' + (data.subject || ''),
-                '',
-                data.message || ''
-            ].join('\n');
-
-            const params = new URLSearchParams();
-            const safeAppend = (key, value) => {
-                if (key && value !== undefined && value !== null && !key.includes('REPLACE_ME')) {
-                    params.append(key, String(value));
-                }
-            };
-
-            safeAppend(fields.name, data.name || '');
-            safeAppend(fields.email, data.email || '');
-            safeAppend(fields.phone, data.phone || '');
-            safeAppend(fields.subject, data.subject || '');
-            safeAppend(fields.message, messageWithContact);
-            safeAppend(fields.consent, consentAccepted ? 'Да' : 'Нет');
-            safeAppend(fields.source, window.location.href);
-
-            const url = 'https://forms.yandex.ru/cloud/' + encodeURIComponent(YANDEX_FORM_CONFIG.formId) + '/?iframe=1';
-            return fetch(url, {
-                method: 'POST',
-                mode: 'no-cors',
-                credentials: 'omit',
-                referrerPolicy: 'no-referrer',
-                body: params
-            }).then(() => ({ success: true }));
+        sendToServer: function() {
+            // Контактная форма обрабатывается в iframe Яндекс Форм.
+            // Любые другие потребители sendToServer должны быть переписаны
+            // под конкретный российский бэкенд перед использованием.
+            const err = new Error('No server endpoint configured for local form submissions');
+            err.code = 'NO_BACKEND';
+            return Promise.reject(err);
         },
         
         showSuccess: function(form, message) {
