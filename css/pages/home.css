@@ -805,6 +805,16 @@ p, span, div {
     filter: blur(0.5px);
 }
 
+.phone-screen-premium picture,
+.phone-screen-premium img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+}
+
 .phone-screen-premium {
     width: 100%;
     height: 100%;
