@@ -592,7 +592,7 @@
         window.addEventListener('load', fixHangingPrepositions, { once: true });
     }
 
-    console.log('🧠 Иссея Premium: Готова помогать! ✨');
+    console.log('Иссея Premium: готова к работе');
 
 })();
 

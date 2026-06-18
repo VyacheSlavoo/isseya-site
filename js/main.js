@@ -566,7 +566,7 @@
     }
 
     function initializeModules() {
-        console.log('🧠 Psychea website initialized');
+        console.log('Psychea website initialized');
 
         // Initialize all modules
         Navigation.init();
