@@ -74,9 +74,9 @@
                 <li><a href="contact.html" class="nav-link active">Контакты</a></li>
             </ul>
             
-            <a href="contact.html?subject=beta" class="nav-cta">
-                <i class="fas fa-flask"></i>
-                <span>Участвовать в тесте</span>
+            <a href="https://www.rustore.ru/catalog/app/ru.isseya.app" class="nav-cta" target="_blank" rel="noopener" aria-label="Скачать Иссею в RuStore">
+                <i class="fas fa-download"></i>
+                <span>Скачать</span>
             </a>
         </div>
     </nav>
@@ -98,8 +98,7 @@
 
     <section class="section-premium contact-section">
         <div class="container-premium">
-            <div class="contact-grid-premium">
-                <div class="contact-info-premium" data-aos="fade-right">
+            <div class="contact-info-premium contact-info-premium--standalone" data-aos="fade-up">
                     <div class="contact-card-premium contact-card--email">
                         <div class="cc-visual" aria-hidden="true">
                             <span class="cc-emoji"><i class="fas fa-envelope"></i></span>
@@ -143,99 +142,6 @@
                             <span class="contact-link">Пн-Пт: 9:00 - 18:00<br>Сб-Вс: Выходной</span>
                         </div>
                     </div>
-                </div>
-                
-                <div class="contact-form-premium">
-                    <div class="card-premium form-card-premium">
-                        <div class="form-card-header">
-                            <span class="form-card-eyebrow">Связь с командой Иссеи</span>
-                            <h2>Расскажите задачу — предложим решение</h2>
-                            <p class="form-card-lead">
-                                Заполните короткую форму — мы прочитаем обращение в рабочий день и ответим
-                                на указанный e-mail или телефон.
-                            </p>
-                        </div>
-
-                        <ul class="form-card-bullets">
-                            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Ответ от живого человека, не автобот</li>
-                            <li><i class="fas fa-shield-halved" aria-hidden="true"></i> Два явных согласия: обработка ПДн и трансграничная передача (ст. 12 152-ФЗ)</li>
-                            <li><i class="fas fa-table" aria-hidden="true"></i> Заявка фиксируется в Google Таблице (Google LLC, США) — только после ваших галочек</li>
-                        </ul>
-
-                        <form class="contact-form">
-                            <div class="form-group-premium">
-                                <label for="name">Имя</label>
-                                <input type="text" id="name" name="name" maxlength="120" required>
-                            </div>
-
-                            <div class="form-group-premium">
-                                <label for="email">Эл. почта</label>
-                                <input type="email" id="email" name="email" maxlength="120" required>
-                            </div>
-
-                            <div class="form-group-premium">
-                                <label for="phone">Телефон</label>
-                                <input type="tel" id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" maxlength="20" required>
-                            </div>
-
-                            <div class="form-group-premium">
-                                <label for="subject">Тема</label>
-                                <select id="subject" name="subject" required>
-                                    <option value="">Выберите тему</option>
-                                    <option value="Общий вопрос">Общий вопрос</option>
-                                    <option value="Для бизнеса">Для бизнеса</option>
-                                    <option value="Техподдержка">Техподдержка</option>
-                                    <option value="Партнёрство">Партнёрство</option>
-                                    <option value="Закрытое тестирование">Участие в закрытом тестировании</option>
-                                    <option value="Другое">Другое</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group-premium">
-                                <label for="message">Сообщение</label>
-                                <textarea id="message" name="message" rows="6" maxlength="450" required></textarea>
-                            </div>
-
-                            <label class="form-consent">
-                                <input type="checkbox" id="personal-data-consent" name="personal_data_consent" value="accepted" required>
-                                <span>
-                                    Я даю согласие ООО «ПСИХОТЕКА» (ИНН 7801745600) на обработку моих персональных данных
-                                    (в т.ч. имя, контактные данные, тема и текст обращения) в целях рассмотрения обращения и связи со мной.
-                                    Подробности — в
-                                    <a href="privacy.html" target="_blank" rel="noopener">Политике конфиденциальности</a>.
-                                </span>
-                            </label>
-
-                            <label class="form-consent">
-                                <input type="checkbox" id="cross-border-consent" name="cross_border_transfer_consent" value="accepted" required>
-                                <span>
-                                    Я даю отдельное согласие на трансграничную передачу этих персональных данных получателю
-                                    <strong>Google LLC</strong> (США) для приёма и учёта обращения в <strong>Google Таблице</strong>
-                                    с использованием <strong>Google Apps Script</strong>. Мне известно, что указанное иностранное государство
-                                    может не обеспечивать уровень защиты персональных данных, адекватный требованиям 152-ФЗ, и я принимаю этот риск.
-                                    Условия обработки у получателя изложены в Политике; копию договорённостей можно запросить у оператора.
-                                </span>
-                            </label>
-
-                            <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
-                                <label for="website_url">Не заполняйте это поле</label>
-                                <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off">
-                            </div>
-
-                            <button type="submit" class="btn-premium btn-primary form-submit-btn">
-                                <span>Отправить сообщение</span>
-                                <span class="btn-arrow" aria-hidden="true">→</span>
-                            </button>
-                            <p class="form-privacy-note">
-                                <span class="form-privacy-note__icon" aria-hidden="true"><i class="fas fa-lock"></i></span>
-                                <span class="form-privacy-note__text">
-                                    Отправка идёт на защищённый приём данных Google Apps Script. Без двух галочек форма не отправится.
-                                    Подробности о трансграничной передаче — в <a href="privacy.html" target="_blank" rel="noopener">Политике конфиденциальности</a>.
-                                </span>
-                            </p>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -274,7 +180,8 @@
                         <li><a href="features.html">Возможности</a></li>
                         <li><a href="compare.html">Сравнение решений</a></li>
                         <li><a href="../index.html#pricing">Цены</a></li>
-                        <li><a href="contact.html?subject=beta">Участвовать в тесте</a></li>
+                        <li><a href="https://www.rustore.ru/catalog/app/ru.isseya.app" target="_blank" rel="noopener">Скачать в RuStore</a></li>
+                        <li><a href="https://account.isseya.ru/signin" target="_blank" rel="noopener">Личный кабинет</a></li>
                     </ul>
                 </div>
                 
@@ -330,25 +237,8 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script>
-        (function() {
-            var params = new URLSearchParams(window.location.search);
-            var subject = params.get('subject');
-            if (!subject) return;
-            if (subject === 'beta') {
-                subject = 'Закрытое тестирование';
-            }
-            var select = document.getElementById('subject');
-            if (!select) return;
-            var option = select.querySelector('option[value="' + subject + '"]');
-            if (option) {
-                select.value = subject;
-            }
-        })();
-    </script>
     <script src="../js/premium.js" defer></script>
     <script src="../js/cookie-consent.js" defer></script>
-    <script src="../js/forms.js" defer></script>
 </body>
 </html>
 

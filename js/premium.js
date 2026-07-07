@@ -176,12 +176,12 @@
         const sticky = document.createElement('div');
         sticky.className = 'mobile-sticky-cta-premium';
         sticky.innerHTML = `
-            <a href="pages/contact.html?subject=beta" class="mobile-sticky-cta-btn mobile-sticky-cta-btn--primary" data-cta-name="sticky_beta">
-                <i class="fas fa-flask" aria-hidden="true"></i>
-                <span>Записаться на тест</span>
+            <a href="https://www.rustore.ru/catalog/app/ru.isseya.app" class="mobile-sticky-cta-btn mobile-sticky-cta-btn--primary" target="_blank" rel="noopener" data-cta-name="sticky_download">
+                <i class="fas fa-download" aria-hidden="true"></i>
+                <span>Скачать в RuStore</span>
             </a>
-            <a href="#pricing" class="mobile-sticky-cta-btn mobile-sticky-cta-btn--ghost" data-cta-name="sticky_pricing" aria-label="Тарифы">
-                <i class="fas fa-tag" aria-hidden="true"></i>
+            <a href="https://account.isseya.ru/signin" class="mobile-sticky-cta-btn mobile-sticky-cta-btn--ghost" target="_blank" rel="noopener" data-cta-name="sticky_account" aria-label="Личный кабинет">
+                <i class="fas fa-user" aria-hidden="true"></i>
             </a>
         `;
         document.body.appendChild(sticky);

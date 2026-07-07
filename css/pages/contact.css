@@ -67,6 +67,20 @@
     align-items: start;
 }
 
+.contact-info-premium--standalone {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .contact-info-premium--standalone {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ==========================================
    CONTACT INFO CARDS
    ========================================== */
