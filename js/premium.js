@@ -180,9 +180,6 @@
                 <i class="fas fa-download" aria-hidden="true"></i>
                 <span>Скачать в RuStore</span>
             </a>
-            <a href="https://account.isseya.ru/signin" class="mobile-sticky-cta-btn mobile-sticky-cta-btn--ghost" target="_blank" rel="noopener" data-cta-name="sticky_account" aria-label="Личный кабинет">
-                <i class="fas fa-user" aria-hidden="true"></i>
-            </a>
         `;
         document.body.appendChild(sticky);
         document.body.classList.add('has-mobile-sticky-cta');
