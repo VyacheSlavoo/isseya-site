@@ -176,9 +176,13 @@
         const sticky = document.createElement('div');
         sticky.className = 'mobile-sticky-cta-premium';
         sticky.innerHTML = `
-            <a href="https://www.rustore.ru/catalog/app/ru.isseya.app" class="mobile-sticky-cta-btn mobile-sticky-cta-btn--primary" target="_blank" rel="noopener" data-cta-name="sticky_download">
-                <i class="fas fa-download" aria-hidden="true"></i>
-                <span>Скачать в RuStore</span>
+            <a href="https://apps.apple.com/us/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061" class="mobile-sticky-cta-btn mobile-sticky-cta-btn--primary" target="_blank" rel="noopener" data-cta-name="sticky_appstore">
+                <i class="fab fa-apple" aria-hidden="true"></i>
+                <span>App Store</span>
+            </a>
+            <a href="https://www.rustore.ru/catalog/app/ru.isseya.app" class="mobile-sticky-cta-btn mobile-sticky-cta-btn--ghost" target="_blank" rel="noopener" data-cta-name="sticky_download" aria-label="RuStore">
+                <i class="fas fa-mobile-screen" aria-hidden="true"></i>
+                <span>RuStore</span>
             </a>
         `;
         document.body.appendChild(sticky);

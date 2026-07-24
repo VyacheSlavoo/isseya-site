@@ -1,4 +1,4 @@
-# robots.txt for Иссея (Psychoteka)
+# robots.txt for Иссея
 # https://иссея.рф
 
 User-agent: *
@@ -6,9 +6,11 @@ Allow: /
 Disallow: /admin/
 Disallow: /api/
 
-# Sitemap location
+User-agent: Googlebot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term
+
 Sitemap: https://иссея.рф/sitemap.xml
-
-# Crawl-delay for all bots
-Crawl-delay: 1
-
