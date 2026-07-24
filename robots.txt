@@ -5,12 +5,18 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /api/
+Disallow: /pages/blog.html
+Disallow: /zapis-k-psikhologu.html
 
 User-agent: Googlebot
 Allow: /
+Disallow: /pages/blog.html
+Disallow: /zapis-k-psikhologu.html
 
 User-agent: Yandex
 Allow: /
+Disallow: /pages/blog.html
+Disallow: /zapis-k-psikhologu.html
 Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term
 
 Sitemap: https://иссея.рф/sitemap.xml

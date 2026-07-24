@@ -95,7 +95,7 @@
     --text-primary: var(--neutral-700); /* Match app exact text color */
     --text-secondary: var(--neutral-600);
     --text-tertiary: var(--neutral-500);
-    --text-muted: var(--neutral-400);
+    --text-muted: var(--neutral-600);
     --text-inverse: #ffffff;
 
     --gradient-primary: linear-gradient(135deg, #e5d4fa 0%, #f6ecfd 50%, #fdfbff 100%);
@@ -104,8 +104,9 @@
     --gradient-warm: linear-gradient(135deg, #ffe8ca 0%, #fff7ea 50%, #fffcf7 100%);
     --gradient-lilac: linear-gradient(120deg, #d0d7f6 0%, #e5d4fa 55%, #f6ecfd 100%);
     --gradient-soft: linear-gradient(145deg, rgba(229, 212, 250, 0.4), rgba(246, 236, 253, 0.8));
-    --gradient-luxury: linear-gradient(120deg, #505885 0%, #7682be 45%, #d98d96 100%);
-    --gradient-accent-text: linear-gradient(120deg, #7a95e0 0%, #a8b8ff 45%, #ffd1da 100%);
+    --gradient-luxury: linear-gradient(120deg, #3f466a 0%, #505885 55%, #6e4a62 100%);
+    /* Darker stops so clipped gradient text stays AA on light backgrounds */
+    --gradient-accent-text: linear-gradient(120deg, #3f466a 0%, #505885 45%, #b45c6d 100%);
     --accent-token-shadow: 0 10px 24px rgba(122, 149, 224, 0.28);
 
     --glass-bg: rgba(255, 255, 255, 0.88);
@@ -580,18 +581,18 @@ body.menu-open {
     flex: 1;
     padding: var(--space-4) var(--space-6);
     font-size: 0.95rem;
-    color: var(--text-primary);
-    background: linear-gradient(135deg, #c8d8f8 0%, #dbc8f8 50%, #f8c8d8 100%);
-    box-shadow: 0 4px 20px rgba(148, 167, 230, 0.35);
+    color: #ffffff;
+    background: var(--gradient-luxury);
+    box-shadow: 0 4px 20px rgba(80, 88, 133, 0.35);
 }
 
 .mobile-sticky-cta-btn--ghost {
     flex: 0 0 auto;
     padding: var(--space-4) var(--space-5);
     font-size: 0.9rem;
-    color: var(--primary-700);
-    background: rgba(255, 255, 255, 0.88);
-    border: 1.5px solid rgba(148, 167, 230, 0.35);
+    color: var(--primary-900);
+    background: rgba(255, 255, 255, 0.92);
+    border: 1.5px solid rgba(80, 88, 133, 0.3);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
@@ -680,27 +681,20 @@ body.menu-open {
 
 .nav-cta {
     padding: var(--space-4) var(--space-10);
-    background: linear-gradient(135deg, 
-        #e5d4fa 0%, 
-        #f0e5ff 25%,
-        #f6ecfd 50%, 
-        #fdfbff 75%,
-        #ffffff 100%);
-    color: var(--primary-700);
+    background: var(--gradient-luxury);
+    color: #ffffff;
     text-decoration: none;
     font-weight: var(--font-bold);
     border-radius: var(--radius-full);
     box-shadow: 
-        0 4px 20px rgba(229, 212, 250, 0.45),
-        0 2px 10px rgba(149, 167, 230, 0.25),
-        0 0 0 1px rgba(255, 255, 255, 0.8) inset,
-        0 1px 0 rgba(255, 255, 255, 1) inset;
+        0 4px 20px rgba(80, 88, 133, 0.35),
+        0 2px 10px rgba(63, 70, 106, 0.2);
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     display: inline-flex;
     align-items: center;
     gap: var(--space-3);
     font-size: 0.95rem;
-    border: 2px solid rgba(229, 212, 250, 0.6);
+    border: 2px solid rgba(63, 70, 106, 0.3);
     white-space: nowrap;
     position: relative;
     overflow: hidden;
@@ -717,7 +711,7 @@ body.menu-open {
     height: 100%;
     background: linear-gradient(90deg, 
         transparent 0%, 
-        rgba(255, 255, 255, 0.6) 50%, 
+        rgba(255, 255, 255, 0.35) 50%, 
         transparent 100%);
     transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1;
@@ -731,7 +725,7 @@ body.menu-open {
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
     transform: translate(-50%, -50%);
     transition: width 0.5s ease, height 0.5s ease;
     z-index: 0;
@@ -739,19 +733,12 @@ body.menu-open {
 
 .nav-cta:hover {
     transform: translateY(-3px) scale(1.02);
-    background: linear-gradient(135deg, 
-        #f0e5ff 0%, 
-        #f6ecfd 25%,
-        #fdfbff 50%, 
-        #ffffff 75%,
-        #ffffff 100%);
+    background: linear-gradient(120deg, #2f3550 0%, #3f466a 50%, #5a3d52 100%);
     box-shadow: 
-        0 12px 32px rgba(229, 212, 250, 0.6),
-        0 6px 16px rgba(149, 167, 230, 0.35),
-        0 0 0 1px rgba(255, 255, 255, 0.95) inset,
-        0 2px 0 rgba(255, 255, 255, 1) inset;
-    border-color: rgba(229, 212, 250, 0.9);
-    color: var(--primary-800);
+        0 12px 32px rgba(80, 88, 133, 0.45),
+        0 6px 16px rgba(63, 70, 106, 0.28);
+    border-color: rgba(63, 70, 106, 0.45);
+    color: #ffffff;
 }
 
 .nav-cta:hover::before {
@@ -766,14 +753,14 @@ body.menu-open {
 .nav-cta:active {
     transform: translateY(-1px) scale(0.98);
     box-shadow: 
-        0 4px 16px rgba(229, 212, 250, 0.4),
-        0 2px 8px rgba(149, 167, 230, 0.25),
-        0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+        0 4px 16px rgba(80, 88, 133, 0.35),
+        0 2px 8px rgba(63, 70, 106, 0.22);
 }
 
 .nav-cta i {
     font-size: 1.1rem;
-    filter: drop-shadow(0 2px 4px rgba(149, 167, 230, 0.3));
+    color: #ffffff;
+    filter: drop-shadow(0 2px 4px rgba(63, 70, 106, 0.35));
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
     z-index: 2;
@@ -781,26 +768,24 @@ body.menu-open {
 
 .nav-cta:hover i {
     transform: translateY(-2px) rotate(-5deg) scale(1.1);
-    filter: drop-shadow(0 4px 8px rgba(149, 167, 230, 0.4));
+    filter: drop-shadow(0 4px 8px rgba(63, 70, 106, 0.4));
 }
 
 .nav-cta span {
     position: relative;
     z-index: 2;
     transition: transform 0.3s ease;
-    background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-800) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
+    background: none;
     font-weight: var(--font-bold);
 }
 
 .nav-cta:hover span {
     transform: translateX(2px);
-    background: linear-gradient(135deg, var(--primary-800) 0%, var(--primary-900) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
+    background: none;
 }
 
 /* ==========================================
@@ -816,9 +801,9 @@ body.menu-open {
         var(--surface-100) 0%, 
         var(--surface-200) 50%, 
         var(--surface-100) 100%);
-    border: 2px solid rgba(177, 189, 234, 0.4);
+    border: 2px solid rgba(80, 88, 133, 0.35);
     border-radius: var(--radius-full);
-    color: var(--primary-700);
+    color: var(--primary-900);
     font-weight: var(--font-bold);
     font-size: 1.05rem;
     text-decoration: none;
@@ -863,7 +848,7 @@ body.menu-open {
 }
 
 .btn-premium:hover {
-    border-color: rgba(177, 189, 234, 0.7);
+    border-color: rgba(80, 88, 133, 0.55);
     transform: translateY(-4px) scale(1.02);
     background: linear-gradient(135deg, 
         var(--surface-100) 0%, 
@@ -875,7 +860,7 @@ body.menu-open {
         0 0 0 1px rgba(255, 255, 255, 0.95) inset,
         0 2px 0 rgba(255, 255, 255, 1) inset,
         0 0 40px rgba(177, 189, 234, 0.25);
-    color: var(--primary-800);
+    color: var(--primary-900);
 }
 
 .btn-premium:hover::before {
@@ -911,64 +896,47 @@ body.menu-open {
     position: relative;
     z-index: 2;
     transition: transform 0.3s ease;
-    background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-800) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: inherit;
+    -webkit-text-fill-color: currentColor;
     font-weight: var(--font-bold);
 }
 
 .btn-premium:hover span:not(.ripple-circle) {
     transform: translateX(2px);
-    background: linear-gradient(135deg, var(--primary-800) 0%, var(--primary-900) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: inherit;
+    -webkit-text-fill-color: currentColor;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, 
-        #e5d4fa 0%, 
-        #f0e5ff 25%,
-        #f6ecfd 50%, 
-        #fdfbff 75%,
-        #ffffff 100%);
-    border: 2px solid rgba(229, 212, 250, 0.6);
-    color: var(--primary-700);
+    background: var(--gradient-luxury);
+    border: 2px solid rgba(63, 70, 106, 0.35);
+    color: #ffffff;
     box-shadow: 
-        0 6px 24px rgba(229, 212, 250, 0.45),
-        0 3px 12px rgba(149, 167, 230, 0.25),
-        0 0 0 1px rgba(255, 255, 255, 0.8) inset,
-        0 1px 0 rgba(255, 255, 255, 1) inset;
+        0 6px 24px rgba(80, 88, 133, 0.35),
+        0 3px 12px rgba(63, 70, 106, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
 }
 
 .btn-primary::before {
     background: linear-gradient(90deg, 
         transparent 0%, 
-        rgba(255, 255, 255, 0.6) 50%, 
+        rgba(255, 255, 255, 0.35) 50%, 
         transparent 100%);
 }
 
 .btn-primary::after {
-    background: radial-gradient(circle, rgba(229, 212, 250, 0.4) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, 
-        #f0e5ff 0%, 
-        #f6ecfd 25%,
-        #fdfbff 50%, 
-        #ffffff 75%,
-        #ffffff 100%);
+    background: linear-gradient(120deg, #2f3550 0%, #3f466a 50%, #5a3d52 100%);
     box-shadow: 
-        0 14px 40px rgba(229, 212, 250, 0.6),
-        0 7px 20px rgba(149, 167, 230, 0.35),
-        0 0 0 1px rgba(255, 255, 255, 0.95) inset,
-        0 2px 0 rgba(255, 255, 255, 1) inset,
-        0 0 50px rgba(229, 212, 250, 0.35);
-    border-color: rgba(229, 212, 250, 0.9);
+        0 14px 40px rgba(80, 88, 133, 0.45),
+        0 7px 20px rgba(63, 70, 106, 0.28),
+        0 0 0 1px rgba(255, 255, 255, 0.28) inset;
+    border-color: rgba(63, 70, 106, 0.5);
     transform: translateY(-5px) scale(1.03);
-    color: var(--primary-800);
+    color: #ffffff;
 }
 
 .btn-primary:hover::after {
@@ -977,26 +945,25 @@ body.menu-open {
 }
 
 .btn-primary i {
-    filter: drop-shadow(0 2px 4px rgba(149, 167, 230, 0.3));
+    color: #ffffff;
+    filter: drop-shadow(0 2px 4px rgba(63, 70, 106, 0.35));
 }
 
 .btn-primary:hover i {
-    filter: drop-shadow(0 4px 8px rgba(149, 167, 230, 0.4));
+    filter: drop-shadow(0 4px 8px rgba(63, 70, 106, 0.4));
     transform: translateX(6px) translateY(-2px) rotate(-5deg) scale(1.15);
 }
 
 .btn-primary span:not(.ripple-circle) {
-    background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-800) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
+    background: none;
 }
 
 .btn-primary:hover span:not(.ripple-circle) {
-    background: linear-gradient(135deg, var(--primary-800) 0%, var(--primary-900) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
+    background: none;
 }
 
 /* ==========================================

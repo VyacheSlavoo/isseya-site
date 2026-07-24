@@ -51,12 +51,14 @@
 }
 
 .faq-search-input:focus {
-    outline: none;
-
     border-color: rgba(122, 149, 224, 0.55);
     box-shadow:
         0 0 0 3px rgba(122, 149, 224, 0.12),
         0 8px 28px rgba(63, 70, 106, 0.1);
+}
+
+.faq-search-input:focus:not(:focus-visible) {
+    outline: none;
 }
 
 .faq-search-icon {

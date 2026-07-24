@@ -336,9 +336,14 @@
 .form-group-premium input:focus,
 .form-group-premium textarea:focus,
 .form-group-premium select:focus {
-    outline: none;
     border-color: rgba(177, 189, 234, 0.7);
     box-shadow: 0 0 0 3px rgba(177, 189, 234, 0.15);
+}
+
+.form-group-premium input:focus:not(:focus-visible),
+.form-group-premium textarea:focus:not(:focus-visible),
+.form-group-premium select:focus:not(:focus-visible) {
+    outline: none;
 }
 
 .form-group-premium textarea {
