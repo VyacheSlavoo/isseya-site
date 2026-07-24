@@ -53,7 +53,7 @@
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 
     <!-- Icons - deferred to avoid blocking first paint -->
-    <link rel="stylesheet" href="fonts/isseya-fonts.css?v=20">
+    <link rel="stylesheet" href="fonts/isseya-fonts.css?v=21">
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous" referrerpolicy="no-referrer">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
 
@@ -70,8 +70,8 @@
     <link rel="preload" href="images/hero-phone.webp" as="image">
 
     <!-- Critical page styles load normally to avoid unstyled flicker on the homepage -->
-    <link rel="stylesheet" href="css/premium.css?v=20">
-    <link rel="stylesheet" href="css/pages/home.css?v=20">
+    <link rel="stylesheet" href="css/premium.css?v=21">
+    <link rel="stylesheet" href="css/pages/home.css?v=21">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -219,24 +219,24 @@
                     <span class="hamburger-line"></span>
                 </button>
 
-                <ul class="nav-links" id="nav-menu" role="menubar">
-                    <li role="none">
-                        <a href="index.html" class="nav-link active" role="menuitem" aria-current="page">Главная</a>
+                <ul class="nav-links" id="nav-menu">
+                    <li>
+                        <a href="index.html" class="nav-link active" aria-current="page">Главная</a>
                     </li>
-                    <li role="none">
-                        <a href="pages/about.html" class="nav-link" role="menuitem">О проекте</a>
+                    <li>
+                        <a href="pages/about.html" class="nav-link">О проекте</a>
                     </li>
-                    <li role="none">
-                        <a href="pages/features.html" class="nav-link" role="menuitem">Возможности</a>
+                    <li>
+                        <a href="pages/features.html" class="nav-link">Возможности</a>
                     </li>
-                    <li role="none">
-                        <a href="pages/compare.html" class="nav-link" role="menuitem">Сравнение</a>
+                    <li>
+                        <a href="pages/compare.html" class="nav-link">Сравнение</a>
                     </li>
-                    <li role="none">
-                        <a href="pages/business.html" class="nav-link" role="menuitem">Для бизнеса</a>
+                    <li>
+                        <a href="pages/business.html" class="nav-link">Для бизнеса</a>
                     </li>
-                    <li role="none">
-                        <a href="pages/contact.html" class="nav-link" role="menuitem">Контакты</a>
+                    <li>
+                        <a href="pages/contact.html" class="nav-link">Контакты</a>
                     </li>
             </ul>
             
@@ -254,7 +254,7 @@
         <section class="hero-premium section-premium" aria-labelledby="hero-title" data-funnel-step="hero">
         <div class="container-premium">
             <div class="hero-grid">
-                <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+                <div class="hero-content">
                         <div class="hero-badge" role="status" aria-live="polite">
                             <i class="fas fa-mobile-screen" aria-hidden="true"></i>
                         <span>App Store и RuStore</span>
@@ -314,7 +314,7 @@
                     </div>
                 </div>
                 
-                <div class="hero-visual" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <div class="hero-visual">
                     <div class="phone-glow-premium"></div>
                     <div class="phone-base-premium"></div>
                     <div class="phone-mockup-premium">
@@ -354,7 +354,7 @@
         <!-- Problem Section with enhanced accessibility -->
         <section class="section-premium problem-section" aria-labelledby="problem-title">
         <div class="container-premium">
-                <header class="section-header-premium" data-aos="fade-up">
+                <header class="section-header-premium">
                 <span class="section-badge-premium">Проблема</span>
                     <h2 id="problem-title" class="section-title-premium">
                         <span class="heading-line">Почему молодые люди не получают</span>
@@ -363,7 +363,7 @@
                 </header>
             
             <div class="problem-grid">
-                <div class="card-premium problem-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-premium problem-card">
                     <div class="card-icon-premium">
                         <i class="fas fa-ruble-sign"></i>
                     </div>
@@ -372,7 +372,7 @@
                     <div class="card-stat">Финансовый барьер</div>
                 </div>
                 
-                <div class="card-premium problem-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-premium problem-card">
                     <div class="card-icon-premium">
                         <i class="fas fa-calendar-times"></i>
                     </div>
@@ -381,7 +381,7 @@
                     <div class="card-stat">Нет времени</div>
                 </div>
                 
-                <div class="card-premium problem-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-premium problem-card">
                     <div class="card-icon-premium">
                         <i class="fas fa-user-slash"></i>
                     </div>
@@ -390,7 +390,7 @@
                     <div class="card-stat">Социальный барьер</div>
                 </div>
                 
-                <div class="card-premium problem-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="card-premium problem-card">
                     <div class="card-icon-premium">
                         <i class="fas fa-question-circle"></i>
                     </div>
@@ -400,7 +400,7 @@
                 </div>
             </div>
             
-            <div class="problem-stats-premium" data-aos="fade-up" data-aos-delay="500">
+            <div class="problem-stats-premium">
                 <div class="stat-box-premium">
                     <div class="stat-number-premium">70%+</div>
                     <div class="stat-text-premium">молодых людей сталкиваются с хроническим стрессом</div>
@@ -414,7 +414,7 @@
                     <div class="stat-text-premium">не получают помощь из-за финансовых и социальных барьеров</div>
                 </div>
             </div>
-            <p class="problem-source-note" data-aos="fade-up" data-aos-delay="600">
+            <p class="problem-source-note">
                 <i class="fas fa-info-circle" aria-hidden="true"></i>
                 По данным исследований: ВОЗ (2022), Мониторинг НИУ ВШЭ «Здоровье студентов» (2021), American College Health Association (2023)
             </p>
@@ -425,7 +425,7 @@
         <!-- Solution Section with enhanced accessibility -->
         <section class="section-premium solution-section" aria-labelledby="solution-title">
         <div class="container-premium">
-                <header class="section-header-premium" data-aos="fade-up">
+                <header class="section-header-premium">
                 <span class="section-badge-premium">Решение</span>
                     <h2 id="solution-title" class="section-title-premium">
                         <span class="heading-line">Один сервис вместо хаотичных советов.</span>
@@ -438,7 +438,7 @@
             </div>
             
             <div class="features-grid-premium">
-                <div class="card-premium feature-card-premium" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-premium feature-card-premium">
                     <div class="feature-glow-premium"></div>
                     <div class="card-icon-premium feature-icon-premium">
                         <i class="fas fa-robot"></i>
@@ -452,7 +452,7 @@
                     <div class="feature-tag-premium">В базовом тарифе</div>
                 </div>
                 
-                <div class="card-premium feature-card-premium" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-premium feature-card-premium">
                     <div class="feature-glow-premium"></div>
                     <div class="card-icon-premium feature-icon-premium">
                         <i class="fas fa-chart-line"></i>
@@ -466,7 +466,7 @@
                     <div class="feature-tag-premium">Валидированные методики</div>
                 </div>
                 
-                <div class="card-premium feature-card-premium" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-premium feature-card-premium">
                     <div class="feature-glow-premium"></div>
                     <div class="card-icon-premium feature-icon-premium">
                         <i class="fas fa-user-check"></i>
@@ -480,7 +480,7 @@
                     <div class="feature-tag-premium">Персонализация</div>
                 </div>
                 
-                <div class="card-premium feature-card-premium" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-premium feature-card-premium">
                     <div class="feature-glow-premium"></div>
                     <div class="card-icon-premium feature-icon-premium">
                         <i class="fas fa-book-open"></i>
@@ -494,7 +494,7 @@
                     <div class="feature-tag-premium">Метод КПТ</div>
                 </div>
                 
-                <div class="card-premium feature-card-premium" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-premium feature-card-premium">
                     <div class="feature-glow-premium"></div>
                     <div class="card-icon-premium feature-icon-premium">
                         <i class="fas fa-spa"></i>
@@ -508,7 +508,7 @@
                     <div class="feature-tag-premium">Проверено наукой</div>
                 </div>
                 
-                <div class="card-premium feature-card-premium" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-premium feature-card-premium">
                     <div class="feature-glow-premium"></div>
                     <div class="card-icon-premium feature-icon-premium">
                         <i class="fas fa-user-md"></i>
@@ -530,7 +530,7 @@
         <!-- How It Works Section with enhanced accessibility -->
         <section class="section-premium how-section" aria-labelledby="how-title">
         <div class="container-premium">
-                <header class="section-header-premium" data-aos="fade-up">
+                <header class="section-header-premium">
                 <span class="section-badge-premium">Как это работает</span>
                     <h2 id="how-title" class="section-title-premium">
                         <span class="heading-line">Как начать уже сегодня</span>
@@ -539,7 +539,7 @@
             </div>
             
             <div class="steps-premium">
-                <div class="step-card-premium" data-aos="zoom-in" data-aos-delay="100">
+                <div class="step-card-premium">
                     <div class="step-number-premium">01</div>
                     <div class="step-icon-premium">
                         <i class="fas fa-download"></i>
@@ -548,7 +548,7 @@
                     <p>Установите Иссею из App Store или RuStore — это займёт пару минут.</p>
                 </div>
                 
-                <div class="step-card-premium" data-aos="zoom-in" data-aos-delay="300">
+                <div class="step-card-premium">
                     <div class="step-number-premium">02</div>
                     <div class="step-icon-premium">
                         <i class="fas fa-clipboard-list"></i>
@@ -557,7 +557,7 @@
                     <p>За 3-5 минут определяем ваш уровень стресса и подбираем персональный план.</p>
                 </div>
                 
-                <div class="step-card-premium" data-aos="zoom-in" data-aos-delay="500">
+                <div class="step-card-premium">
                     <div class="step-number-premium">03</div>
                     <div class="step-icon-premium">
                         <i class="fas fa-rocket"></i>
@@ -573,7 +573,7 @@
         <!-- Pricing Section with enhanced accessibility -->
         <section class="section-premium pricing-section" id="pricing" aria-labelledby="pricing-title" data-funnel-step="pricing">
         <div class="container-premium">
-                <header class="section-header-premium" data-aos="fade-up">
+                <header class="section-header-premium">
                 <span class="section-badge-premium">Цены</span>
                     <h2 id="pricing-title" class="section-title-premium">
                         <span class="heading-line">Прозрачные тарифы.</span>
@@ -586,7 +586,7 @@
             </div>
             
             <div class="pricing-grid-premium">
-                <div class="card-premium pricing-card-premium" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-premium pricing-card-premium">
                     <div class="pricing-header-premium">
                         <h3>Пробный период</h3>
                         <div class="pricing-price-premium">
@@ -607,7 +607,7 @@
                     </div>
                 </div>
                 
-                <div class="card-premium pricing-card-premium popular-premium" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-premium pricing-card-premium popular-premium">
                     <div class="popular-badge-premium"><i class="fas fa-star" aria-hidden="true"></i> Рекомендуем</div>
                     <div class="pricing-header-premium">
                         <h3>Премиум</h3>
@@ -633,7 +633,7 @@
                     <div class="pricing-guarantee-premium"><i class="fas fa-gift" aria-hidden="true"></i> 5 дней бесплатно</div>
                 </div>
                 
-                <div class="card-premium pricing-card-premium" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-premium pricing-card-premium">
                     <div class="pricing-header-premium">
                         <h3>Для организаций</h3>
                         <div class="pricing-price-premium">
@@ -655,7 +655,7 @@
                 </div>
             </div>
             
-            <div class="pricing-note-premium" data-aos="fade-up" data-aos-delay="400">
+            <div class="pricing-note-premium">
                 <i class="fas fa-info-circle"></i>
                 <p>
                         <strong>Почему 320 ₽/месяц?</strong> Мы намеренно держим цену доступной для молодёжи.
@@ -664,7 +664,7 @@
                 </p>
             </div>
 
-            <div class="pricing-roi-premium" data-aos="fade-up" data-aos-delay="500">
+            <div class="pricing-roi-premium">
                 <h3>Для сравнения</h3>
                 <div class="pricing-roi-grid">
                     <div class="roi-item-premium">
@@ -687,7 +687,7 @@
     <!-- Trust Section -->
         <section class="section-premium testimonials-section" id="why-trust" aria-labelledby="trust-title">
         <div class="container-premium">
-                <header class="section-header-premium" data-aos="fade-up">
+                <header class="section-header-premium">
                 <span class="section-badge-premium">Надёжность</span>
                     <h2 id="trust-title" class="section-title-premium">
                         <span class="heading-line">Что стоит за каждой</span>
@@ -700,7 +700,7 @@
 
             <div class="testimonials-grid-premium">
 
-                <div class="card-premium testimonial-card-premium" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-premium testimonial-card-premium">
                     <div class="trust-icon-wrap">
                         <i class="fas fa-microscope" aria-hidden="true"></i>
                     </div>
@@ -717,7 +717,7 @@
                     </div>
                 </div>
 
-                <div class="card-premium testimonial-card-premium" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-premium testimonial-card-premium">
                     <div class="trust-icon-wrap">
                         <i class="fas fa-server" aria-hidden="true"></i>
                     </div>
@@ -733,7 +733,7 @@
                     </div>
                 </div>
 
-                <div class="card-premium testimonial-card-premium" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-premium testimonial-card-premium">
                     <div class="trust-icon-wrap">
                         <i class="fas fa-lock" aria-hidden="true"></i>
                     </div>
@@ -758,7 +758,7 @@
         <!-- Final CTA Section with enhanced accessibility -->
         <section class="section-premium cta-section" id="download" aria-labelledby="cta-title" data-funnel-step="download">
             <div class="container-premium">
-                <div class="cta-card-premium" data-aos="zoom-in">
+                <div class="cta-card-premium">
                 <div class="cta-emoji-premium" aria-hidden="true"><i class="fas fa-mobile-screen"></i></div>
                     <h2 id="cta-title" class="cta-title-premium">
                         <span class="heading-line">Начните заботиться о себе</span>
@@ -918,9 +918,7 @@
     </button>
 
     <!-- Scripts with defer for performance -->
-    <script src="js/main-glass.js" defer></script>
-    <script src="js/home-enhancements.js" defer></script>
-    <script src="js/premium.js?v=20" defer></script>
+    <script src="js/premium.js?v=21" defer></script>
     <script src="js/cookie-consent.js" defer></script>
 </body>
 </html>

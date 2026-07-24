@@ -7,12 +7,11 @@
 // Почему: предыдущие версии держали JS/CSS как cache-first и фиксировали
 // устаревший код у пользователей. Теперь обновления доезжают всегда.
 
-const CACHE_NAME = 'isseya-v16';
+const CACHE_NAME = 'isseya-v17';
 const PRECACHE_URLS = [
     './',
     './css/premium.css',
     './css/pages/home.css',
-    './css/pages/contact.css',
     './css/pages/unified-template.css',
     './fonts/isseya-fonts.css',
     './fonts/manrope-cyrillic.woff2',

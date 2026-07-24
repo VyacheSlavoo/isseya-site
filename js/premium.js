@@ -198,92 +198,20 @@
         updateOffset();
     }
 
-    // Show elements that are in viewport immediately (above the fold)
-    function showVisibleElements() {
-        const aosElements = document.querySelectorAll('[data-aos]');
-        const viewportHeight = window.innerHeight;
-        
-        aosElements.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            // If element is in viewport, show immediately
-            if (rect.top < viewportHeight * 1.5 && rect.bottom > -100) {
-                el.style.opacity = '1';
-                el.style.visibility = 'visible';
-                if (rect.top < viewportHeight) {
-                    // Element is fully in viewport, show without animation
-                    el.style.transform = 'translateY(0)';
-                    el.classList.add('aos-animate');
-                }
-            }
+    // Show above-the-fold content immediately (no AOS dependency)
+    function revealAboveFold() {
+        document.querySelectorAll('.hero-premium, .hero-content, .hero-visual').forEach((el) => {
+            el.style.opacity = '1';
+            el.style.visibility = 'visible';
+            el.style.transform = 'none';
         });
     }
 
-    // Initialize AOS
-    function initAOS() {
-        // First, show elements that are already visible
-        showVisibleElements();
-        
-    if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 1000,
-            easing: 'ease-out-quart',
-            once: true,
-            offset: 100,
-                delay: 50,
-                disable: false // Ensure AOS is enabled
-            });
-            
-            // Refresh AOS after initialization
-            setTimeout(() => {
-                AOS.refresh();
-                showVisibleElements(); // Show visible elements again
-            }, 100);
-            
-            // Fallback: ensure all elements are visible after 2 seconds
-            setTimeout(() => {
-                const aosElements = document.querySelectorAll('[data-aos]');
-                aosElements.forEach(el => {
-                    const computedStyle = window.getComputedStyle(el);
-                    const isHidden = computedStyle.opacity === '0' || 
-                                   computedStyle.visibility === 'hidden';
-                    
-                    if (isHidden || !el.classList.contains('aos-animate')) {
-                        el.style.opacity = '1';
-                        el.style.transform = 'translateY(0)';
-                        el.style.visibility = 'visible';
-                        el.classList.add('aos-animate');
-                    }
-                });
-            }, 2000);
-        } else {
-            // If AOS is not loaded, show all elements immediately
-            const aosElements = document.querySelectorAll('[data-aos]');
-            aosElements.forEach(el => {
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
-                el.style.visibility = 'visible';
-            });
-        }
-    }
-    
-    // Wait for DOM and AOS library to be ready
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(initAOS, 50);
-        });
+        document.addEventListener('DOMContentLoaded', revealAboveFold);
     } else {
-        setTimeout(initAOS, 50);
+        revealAboveFold();
     }
-    
-    // Also check on window load
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            showVisibleElements();
-            if (typeof AOS !== 'undefined') {
-                AOS.refresh();
-            }
-        }, 100);
-    });
 
     ensureBrandLogos();
     initScrollProgress();
@@ -292,6 +220,14 @@
     initSectionReveal();
     initMobileMenu();
     initMobileStickyCta();
+
+    // Service Worker (was in home-enhancements.js)
+    if ('serviceWorker' in navigator && (window.isSecureContext || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+        window.addEventListener('load', () => {
+            const swPath = location.pathname.includes('/pages/') ? '../sw.js' : './sw.js';
+            navigator.serviceWorker.register(swPath).catch(() => {});
+        });
+    }
 
     // ==========================================
     // NAVIGATION
@@ -513,41 +449,7 @@
     }
 
     // ==========================================
-    // PERFORMANCE MONITORING
-    // ==========================================
-    window.addEventListener('load', () => {
-        const loadTime = performance.now();
-        console.log(`✨ Иссея загружена за ${Math.round(loadTime)}ms`);
-    });
-
-    // ==========================================
-    // SMOOTH REVEAL ON SCROLL (Only if no AOS)
-    // ==========================================
-    // Don't hide sections if AOS is being used - it conflicts with AOS animations
-    if (typeof AOS === 'undefined' && !document.body.classList.contains('inner-page')) {
-        const sections = document.querySelectorAll('.section-premium:not([data-aos])');
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.1 });
-
-    sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(30px)';
-        section.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-        sectionObserver.observe(section);
-    });
-    }
-
-    // ==========================================
     // ТИПОГРАФИКА: ВИСЯЩИЕ ПРЕДЛОГИ
-    // Заменяет обычный пробел на неразрывный после
-    // коротких предлогов и союзов, чтобы они не
-    // оставались в конце строки.
     // ==========================================
     function fixHangingPrepositions() {
         // Предлоги, союзы и частицы длиной 1–3 символа
@@ -581,8 +483,6 @@
     } else {
         window.addEventListener('load', fixHangingPrepositions, { once: true });
     }
-
-    console.log('Иссея Premium: готова к работе');
 
 })();
 
