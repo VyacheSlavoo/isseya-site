@@ -4,6 +4,26 @@
    Pastel Palette - Maximum Luxury
    ========================================== */
 
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 10000;
+    padding: 0.75rem 1.25rem;
+    background: var(--primary-700, #5f6ba3);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 0 0 8px 0;
+    font-weight: 600;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+    left: 0;
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
 :root {
     /* Основа палитры по новому референсу */
     --primary-900: #3f466a;
@@ -55,7 +75,7 @@
     --neutral-700: #363753; /* App Primary Text */
     --neutral-600: #54567a;
     --neutral-500: #7b7e9f;
-    --neutral-400: #9da1bd;
+    --neutral-400: #7a7f9c;
     --neutral-300: #c2c5dc;
     --neutral-200: #e2e4ef;
     --neutral-100: #f2f3f8;
@@ -132,7 +152,7 @@
     --space-40: 10rem;
 
     --font-display: 'Unbounded', 'Century Gothic', 'Lato', 'SF Pro Display', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-body: 'Lato', 'SF Pro Text', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Manrope', 'SF Pro Text', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 
     --font-light: 300;
     --font-normal: 400;

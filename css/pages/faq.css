@@ -52,6 +52,7 @@
 
 .faq-search-input:focus {
     outline: none;
+
     border-color: rgba(122, 149, 224, 0.55);
     box-shadow:
         0 0 0 3px rgba(122, 149, 224, 0.12),
@@ -401,4 +402,10 @@
     .faq-cta h3 {
         font-size: 1.4rem;
     }
+}
+
+
+.faq-question:focus-visible {
+    outline: 2px solid #7b8fd4;
+    outline-offset: 2px;
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; base-uri 'self'; form-action 'self';">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="format-detection" content="telephone=no">
     <meta name="theme-color" content="#e5d4fa">
@@ -53,7 +53,7 @@
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 
     <!-- Icons - deferred to avoid blocking first paint -->
-    <link rel="stylesheet" href="fonts/isseya-fonts.css">
+    <link rel="stylesheet" href="fonts/isseya-fonts.css?v=20">
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous" referrerpolicy="no-referrer">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
 
@@ -67,11 +67,11 @@
     </style>
 
     <!-- Hero image preload for LCP -->
-    <link rel="preload" href="Главная.svg" as="image">
+    <link rel="preload" href="images/hero-phone.webp" as="image">
 
     <!-- Critical page styles load normally to avoid unstyled flicker on the homepage -->
-    <link rel="stylesheet" href="css/premium.css">
-    <link rel="stylesheet" href="css/pages/home.css">
+    <link rel="stylesheet" href="css/premium.css?v=20">
+    <link rel="stylesheet" href="css/pages/home.css?v=20">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -84,14 +84,14 @@
         "applicationCategory": "HealthApplication",
         "operatingSystem": "iOS, Android",
         "downloadUrl": [
-            "https://apps.apple.com/us/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061",
+            "https://apps.apple.com/ru/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061",
             "https://www.rustore.ru/catalog/app/ru.isseya.app"
         ],
-        "installUrl": "https://apps.apple.com/us/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061",
+        "installUrl": "https://apps.apple.com/ru/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061",
         "sameAs": [
             "https://instagram.com/isseya_psy",
             "https://www.tiktok.com/@isseya_psy",
-            "https://apps.apple.com/us/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061",
+            "https://apps.apple.com/ru/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061",
             "https://www.rustore.ru/catalog/app/ru.isseya.app"
         ],
         "author": {
@@ -275,7 +275,7 @@
                     </div>
                     
                         <div class="hero-cta-group" role="group" aria-label="Действия">
-                            <a href="https://apps.apple.com/us/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061" class="btn-premium btn-primary" target="_blank" rel="noopener" aria-describedby="appstore-desc" data-cta-name="hero_appstore">
+                            <a href="https://apps.apple.com/ru/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061" class="btn-premium btn-primary" target="_blank" rel="noopener" aria-describedby="appstore-desc" data-cta-name="hero_appstore">
                             <span>App Store</span>
                                 <i class="fab fa-apple" aria-hidden="true"></i>
                         </a>
@@ -323,7 +323,7 @@
                             <div class="phone-power-btn"></div>
                             <div class="phone-camera-module"></div>
                             <div class="phone-screen-premium">
-                                <img src="Главная.svg" width="402" height="874" loading="eager" decoding="async" fetchpriority="high" alt="Скриншот главной страницы приложения Иссея" style="width: 100%; height: 100%; object-fit: cover;">
+                                <img src="images/hero-phone.webp" width="402" height="874" loading="eager" decoding="async" fetchpriority="high" alt="Скриншот главной страницы приложения Иссея" style="width: 100%; height: 100%; object-fit: cover;">
                             </div>
                         </div>
                         
@@ -601,9 +601,10 @@
                         <li><i class="fas fa-check"></i> Дневник и аналитика состояния</li>
                         <li><i class="fas fa-check"></i> Переход на подписку 320 ₽/месяц после пробного периода</li>
                     </ul>
-                    <a href="https://www.rustore.ru/catalog/app/ru.isseya.app" class="btn-premium" target="_blank" rel="noopener" style="width: 100%; justify-content: center; margin-top: var(--space-6);" data-cta-name="pricing_basic">
-                        Скачать в RuStore
-                    </a>
+                    <div class="pricing-store-row" style="display:flex;flex-direction:column;gap:0.75rem;margin-top:var(--space-6);">
+                        <a href="https://apps.apple.com/ru/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061" class="btn-premium btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center;" data-cta-name="pricing_basic_appstore">App Store</a>
+                        <a href="https://www.rustore.ru/catalog/app/ru.isseya.app" class="btn-premium" target="_blank" rel="noopener" style="width:100%;justify-content:center;" data-cta-name="pricing_basic">RuStore</a>
+                    </div>
                 </div>
                 
                 <div class="card-premium pricing-card-premium popular-premium" data-aos="fade-up" data-aos-delay="200">
@@ -625,9 +626,10 @@
                         <li><i class="fas fa-check"></i> Персонализированные инсайты</li>
                         <li><i class="fas fa-check"></i> Приоритетная поддержка</li>
                     </ul>
-                    <a href="https://apps.apple.com/us/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061" class="btn-premium btn-primary" target="_blank" rel="noopener" style="width: 100%; justify-content: center; margin-top: var(--space-6);" data-cta-name="pricing_appstore">
-                        Скачать в App Store
-                    </a>
+                    <div class="pricing-store-row" style="display:flex;flex-direction:column;gap:0.75rem;margin-top:var(--space-6);">
+                        <a href="https://apps.apple.com/ru/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061" class="btn-premium btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center;" data-cta-name="pricing_appstore">App Store</a>
+                        <a href="https://www.rustore.ru/catalog/app/ru.isseya.app" class="btn-premium" target="_blank" rel="noopener" style="width:100%;justify-content:center;" data-cta-name="pricing_premium_rustore">RuStore</a>
+                    </div>
                     <div class="pricing-guarantee-premium"><i class="fas fa-gift" aria-hidden="true"></i> 5 дней бесплатно</div>
                 </div>
                 
@@ -767,7 +769,7 @@
                 </p>
                 
                 <div class="download-buttons-premium">
-                    <a href="https://apps.apple.com/us/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061" class="store-btn-premium" target="_blank" rel="noopener" data-cta-name="final_appstore">
+                    <a href="https://apps.apple.com/ru/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061" class="store-btn-premium" target="_blank" rel="noopener" data-cta-name="final_appstore">
                         <i class="fab fa-apple"></i>
                         <div class="store-text-premium">
                             <span class="store-small">Скачать в</span>
@@ -813,7 +815,7 @@
                     <p>Скачайте в App Store или RuStore</p>
                 </div>
                 <div class="footer-cta-buttons">
-                    <a href="https://apps.apple.com/us/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061" class="footer-store-btn" target="_blank" rel="noopener" data-cta-name="footer_appstore">
+                    <a href="https://apps.apple.com/ru/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061" class="footer-store-btn" target="_blank" rel="noopener" data-cta-name="footer_appstore">
                         <i class="fab fa-apple"></i>
                         <div class="store-btn-text">
                             <span class="small">Скачать в</span>
@@ -851,7 +853,7 @@
                         <li><a href="pages/features.html">Возможности</a></li>
                         <li><a href="pages/compare.html">Сравнение решений</a></li>
                         <li><a href="#pricing">Цены</a></li>
-                        <li><a href="https://apps.apple.com/us/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061" target="_blank" rel="noopener">App Store</a></li>
+                        <li><a href="https://apps.apple.com/ru/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061" target="_blank" rel="noopener">App Store</a></li>
                         <li><a href="https://www.rustore.ru/catalog/app/ru.isseya.app" target="_blank" rel="noopener">Скачать в RuStore</a></li>
                     </ul>
                 </div>
@@ -918,7 +920,7 @@
     <!-- Scripts with defer for performance -->
     <script src="js/main-glass.js" defer></script>
     <script src="js/home-enhancements.js" defer></script>
-    <script src="js/premium.js" defer></script>
+    <script src="js/premium.js?v=20" defer></script>
     <script src="js/cookie-consent.js" defer></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; base-uri 'self'; form-action 'self';">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="description" content="О проекте Иссея - миссия, видение, команда ООО ПСИХОТЕКА. Цифровая поддержка психологического благополучия обучающихся.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -29,15 +29,15 @@
     <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#e5d4fa">
     <title>О проекте - Иссея | Ассистент психологического благополучия</title>
-    <link rel="stylesheet" href="../fonts/isseya-fonts.css">
+    <link rel="stylesheet" href="../fonts/isseya-fonts.css?v=20">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous" referrerpolicy="no-referrer">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
     
-    <link rel="preload" href="../css/premium.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="../css/premium.css"></noscript>
+    <link rel="preload" href="../css/premium.css?v=20" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../css/premium.css?v=20"></noscript>
     
-    <link rel="preload" href="../css/pages/about.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="../css/pages/about.css"></noscript>
+    <link rel="preload" href="../css/pages/about.css?v=20" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../css/pages/about.css?v=20"></noscript>
 
     <script type="application/ld+json">
     {
@@ -59,9 +59,11 @@
         ]
     }
     </script>
-    <link rel="stylesheet" href="../css/pages/unified-template.css">
+    <link rel="stylesheet" href="../css/pages/unified-template.css?v=20">
 </head>
 <body class="inner-page">
+    <a href="#main-content" class="skip-link">Перейти к основному содержимому</a>
+
     
     <!-- Premium Background -->
     <div class="premium-bg">
@@ -99,6 +101,8 @@
             </a>
         </div>
     </nav>
+
+    <main id="main-content">
 
     <!-- Page Hero -->
     <section class="page-hero-premium">
@@ -273,7 +277,7 @@
                     Скачайте приложение в App Store или RuStore и получите 5 дней бесплатного доступа.
                 </p>
                 <div class="cta-buttons-premium">
-                    <a href="https://apps.apple.com/us/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061" class="btn-premium btn-primary" target="_blank" rel="noopener">
+                    <a href="https://apps.apple.com/ru/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061" class="btn-premium btn-primary" target="_blank" rel="noopener">
                         <span>App Store</span>
                         <i class="fab fa-apple"></i>
                     </a>
@@ -287,6 +291,8 @@
     </section>
 
     <!-- Footer -->
+    </main>
+
     <footer class="footer-premium">
         <div class="container-premium">
             <div class="footer-grid-premium">
@@ -308,7 +314,7 @@
                         <li><a href="features.html">Возможности</a></li>
                         <li><a href="compare.html">Сравнение решений</a></li>
                         <li><a href="../index.html#pricing">Цены</a></li>
-                        <li><a href="https://apps.apple.com/us/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061" target="_blank" rel="noopener">App Store</a></li>
+                        <li><a href="https://apps.apple.com/ru/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061" target="_blank" rel="noopener">App Store</a></li>
                         <li><a href="https://www.rustore.ru/catalog/app/ru.isseya.app" target="_blank" rel="noopener">Скачать в RuStore</a></li>
                     </ul>
                 </div>
@@ -367,7 +373,7 @@
     </button>
 
     <!-- Scripts -->
-    <script src="../js/premium.js" defer></script>
+    <script src="../js/premium.js?v=20" defer></script>
     <script src="../js/cookie-consent.js" defer></script>
 </body>
 </html>

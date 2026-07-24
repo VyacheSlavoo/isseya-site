@@ -176,7 +176,7 @@
         const sticky = document.createElement('div');
         sticky.className = 'mobile-sticky-cta-premium';
         sticky.innerHTML = `
-            <a href="https://apps.apple.com/us/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061" class="mobile-sticky-cta-btn mobile-sticky-cta-btn--primary" target="_blank" rel="noopener" data-cta-name="sticky_appstore">
+            <a href="https://apps.apple.com/ru/app/%D0%B8%D1%81%D1%81%D0%B5%D1%8F/id6787733061" class="mobile-sticky-cta-btn mobile-sticky-cta-btn--primary" target="_blank" rel="noopener" data-cta-name="sticky_appstore">
                 <i class="fab fa-apple" aria-hidden="true"></i>
                 <span>App Store</span>
             </a>
@@ -422,12 +422,6 @@
         const suffix = text.replace(/[\d.]/g, '');
         const isFloat = text.includes('.');
 
-        // #region agent log
-        if ((/[\/\-–—]/.test(text)) && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
-            fetch('http://127.0.0.1:7802/ingest/7d94d518-ef1c-4cea-bc93-0e5bfb95a4a6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'78ce86'},body:JSON.stringify({sessionId:'78ce86',runId:'home-counter-pre',hypothesisId:'A',location:'premium.js:animateCounter',message:'Counter parse inputs',data:{original:text,target,suffix,isFloat},timestamp:Date.now()})}).catch(()=>{});
-        }
-        // #endregion
-        
         let current = 0;
         const increment = target / 60;
         
@@ -438,11 +432,6 @@
                 requestAnimationFrame(update);
             } else {
                 el.textContent = target + suffix;
-                // #region agent log
-                if ((/[\/\-–—]/.test(text)) && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
-                    fetch('http://127.0.0.1:7802/ingest/7d94d518-ef1c-4cea-bc93-0e5bfb95a4a6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'78ce86'},body:JSON.stringify({sessionId:'78ce86',runId:'home-counter-post',hypothesisId:'C',location:'premium.js:animateCounter',message:'Counter final render',data:{original:text,rendered:el.textContent},timestamp:Date.now()})}).catch(()=>{});
-                }
-                // #endregion
             }
         };
         update();
