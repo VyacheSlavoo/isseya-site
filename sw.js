@@ -7,7 +7,7 @@
 // Почему: предыдущие версии держали JS/CSS как cache-first и фиксировали
 // устаревший код у пользователей. Теперь обновления доезжают всегда.
 
-const CACHE_NAME = 'isseya-v19';
+const CACHE_NAME = 'isseya-v20';
 const PRECACHE_URLS = [
     './',
     './css/premium.css',
@@ -21,9 +21,7 @@ const PRECACHE_URLS = [
     './js/premium.js',
     './js/cookie-consent.js',
     './manifest.json',
-    './images/hero-phone.webp',
-    './pages/privacy.html',
-    './pages/terms.html'
+    './images/hero-phone.webp'
 ];
 
 self.addEventListener('install', (event) => {

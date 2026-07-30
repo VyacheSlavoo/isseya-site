@@ -578,17 +578,19 @@ body.menu-open {
 
 .mobile-sticky-cta-btn--primary {
     flex: 1;
-    padding: var(--space-4) var(--space-6);
-    font-size: 0.95rem;
+    min-width: 0;
+    padding: var(--space-3) var(--space-3);
+    font-size: 0.8rem;
     color: var(--text-primary);
     background: linear-gradient(135deg, #c8d8f8 0%, #dbc8f8 50%, #f8c8d8 100%);
     box-shadow: 0 4px 20px rgba(148, 167, 230, 0.35);
 }
 
 .mobile-sticky-cta-btn--ghost {
-    flex: 0 0 auto;
-    padding: var(--space-4) var(--space-5);
-    font-size: 0.9rem;
+    flex: 1;
+    min-width: 0;
+    padding: var(--space-3) var(--space-3);
+    font-size: 0.8rem;
     color: var(--primary-700);
     background: rgba(255, 255, 255, 0.88);
     border: 1.5px solid rgba(148, 167, 230, 0.35);
@@ -1550,6 +1552,7 @@ strong {
     display: flex;
     gap: var(--space-5);
     flex-shrink: 0;
+    flex-wrap: wrap;
 }
 
 .footer-store-btn {
@@ -1657,6 +1660,60 @@ strong {
 .footer-bottom-premium p {
     color: var(--neutral-500);
     margin-bottom: var(--space-3);
+}
+
+/* FASIE / ФСИ support acknowledgment */
+.fasie-support {
+    margin: 0 0 var(--space-12);
+}
+
+.fasie-support__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--space-6) var(--space-8);
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    color: #1b3968;
+    transition: background-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.fasie-support__link:hover {
+    background: #ffffff;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+}
+
+.fasie-support__logo {
+    flex-shrink: 0;
+    width: 120px;
+    height: auto;
+    display: block;
+}
+
+.fasie-support__text {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: #1b3968;
+    text-wrap: pretty;
+}
+
+@media (max-width: 768px) {
+    .fasie-support__link {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-4);
+        padding: var(--space-5) var(--space-6);
+    }
+
+    .fasie-support__logo {
+        width: 108px;
+    }
+
+    .fasie-support__text {
+        font-size: 0.8125rem;
+    }
 }
 
 /* Footer responsive */

@@ -26,7 +26,7 @@
     }
 
     function privacyPath() {
-        return window.location.pathname.includes('/pages/') ? 'privacy.html' : 'pages/privacy.html';
+        return 'https://isseya.ru/privacy';
     }
 
     function hideBanner() {

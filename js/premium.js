@@ -180,6 +180,10 @@
                 <i class="fab fa-apple" aria-hidden="true"></i>
                 <span>App Store</span>
             </a>
+            <a href="https://play.google.com/store/apps/details?id=ru.isseya.app" class="mobile-sticky-cta-btn mobile-sticky-cta-btn--ghost" target="_blank" rel="noopener" data-cta-name="sticky_googleplay" aria-label="Google Play">
+                <i class="fab fa-google-play" aria-hidden="true"></i>
+                <span>Google Play</span>
+            </a>
             <a href="https://www.rustore.ru/catalog/app/ru.isseya.app" class="mobile-sticky-cta-btn mobile-sticky-cta-btn--ghost" target="_blank" rel="noopener" data-cta-name="sticky_download" aria-label="RuStore">
                 <i class="fas fa-mobile-screen" aria-hidden="true"></i>
                 <span>RuStore</span>
