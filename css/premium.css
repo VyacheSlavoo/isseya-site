@@ -1685,11 +1685,23 @@ strong {
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
 }
 
+.fasie-support__logos {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    flex-shrink: 0;
+}
+
 .fasie-support__logo {
     flex-shrink: 0;
     width: 120px;
     height: auto;
     display: block;
+}
+
+.fasie-support__logo--putp {
+    width: 148px;
+    border-radius: 10px;
 }
 
 .fasie-support__text {
@@ -1709,6 +1721,10 @@ strong {
 
     .fasie-support__logo {
         width: 108px;
+    }
+
+    .fasie-support__logo--putp {
+        width: 128px;
     }
 
     .fasie-support__text {
